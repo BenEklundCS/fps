@@ -1,4 +1,4 @@
-using fps.scripts;
+namespace CosmicDoom.Scripts;
 
 using Godot;
 using static Godot.GD;

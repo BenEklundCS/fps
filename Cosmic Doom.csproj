@@ -4,4 +4,10 @@
     <EnableDynamicLoading>true</EnableDynamicLoading>
     <RootNamespace>CosmicDoom</RootNamespace>
   </PropertyGroup>
+  <ItemGroup>
+    <Content Include="Shaders\floor.gdshader" />
+    <Content Include="Shaders\floor.gdshader.uid" />
+    <Content Include="Shaders\laser.gdshader" />
+    <Content Include="Shaders\laser.gdshader.uid" />
+  </ItemGroup>
 </Project>

@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cvmlwrfowfoo3"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1f0kj"]
+
+[node name="Character" type="CharacterBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.997517, 0, 0, 0, 0.997517, 0, 0, 0, 0.997517, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_1f0kj")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]

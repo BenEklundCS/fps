@@ -1,22 +1,18 @@
-namespace fps.scripts;
+namespace CosmicDoom.Scripts;
 
 using Godot;
 using static Godot.GD;
 using System;
 
-public partial class Player : CharacterBody3D {
+public partial class Player : Character {
     [Export] public string MoveLeftKeybind = "ui_left";
     [Export] public string MoveRightKeybind = "ui_right";
     [Export] public string MoveUpKeybind = "ui_up";
     [Export] public string MoveDownKeybind = "ui_down";
     [Export] public string JumpKeybind = "ui_accept";
-    
-    [Export] public float Speed = 5.0f;
-    [Export] public float JumpSpeed = 5.0f;
     [Export] public float MouseSensitivity = 0.005f;
 
     private Camera3D _camera;
-    private RayCast3D _ray;
     private float _gravity;
     private readonly float _maxPitch = Mathf.DegToRad(85f);
 
@@ -47,7 +43,7 @@ public partial class Player : CharacterBody3D {
 
     private void Shoot()
     {
-        var laser = (Node3D)GD.Load<PackedScene>("res://Scenes/laser.tscn").Instantiate();
+        var laser = (Node3D)GD.Load<PackedScene>("res://Scenes/Objects/laser.tscn").Instantiate();
         
         Callable.From(() => {
             GetTree().Root.AddChild(laser);
