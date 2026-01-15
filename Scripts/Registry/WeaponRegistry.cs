@@ -16,23 +16,23 @@ public partial class WeaponRegistry : Node, IRegistry<WeaponType, RWeapon> {
             Load<CompressedTexture2D>("res://Assets/Sprites/Weapons/weapon_knife.png")
         ),
         [WeaponType.MachineGun] = new RWeapon(
-            WeaponType.Knife,
+            WeaponType.MachineGun,
             Load<CompressedTexture2D>("res://Assets/Sprites/Weapons/weapon_machinegun.png")
         ),
         [WeaponType.PlasmaGun] = new RWeapon(
-            WeaponType.Knife,
+            WeaponType.PlasmaGun,
             Load<CompressedTexture2D>("res://Assets/Sprites/Weapons/weapon_plasmagun.png")
         ),
         [WeaponType.RocketLauncher] = new RWeapon(
-            WeaponType.Knife,
+            WeaponType.RocketLauncher,
             Load<CompressedTexture2D>("res://Assets/Sprites/Weapons/weapon_rocketlauncher.png")
         ),
         [WeaponType.Shotgun] = new RWeapon(
-            WeaponType.Knife,
+            WeaponType.Shotgun,
             Load<CompressedTexture2D>("res://Assets/Sprites/Weapons/weapon_shotgun.png")
         ),
         [WeaponType.Solution] = new RWeapon(
-            WeaponType.Knife,
+            WeaponType.Solution,
             Load<CompressedTexture2D>("res://Assets/Sprites/Weapons/weapon_solution.png")
         ),
         [WeaponType.None] = new RWeapon(

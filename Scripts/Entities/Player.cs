@@ -22,7 +22,7 @@ public partial class Player : Character {
     private readonly float _maxPitch = Mathf.DegToRad(85f);
 
     private readonly List<RWeapon> _weaponWheel = new ();
-    private int _weaponIndex = 0;
+    private int _weaponIndex;
     private readonly WeaponType[] _defaultWeapons = new[] {
         WeaponType.Knife, 
         WeaponType.PlasmaGun, 
