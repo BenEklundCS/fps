@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://crdwxxr3fx724"]
+
+[ext_resource type="Script" uid="uid://bphrwo6rccpg2" path="res://Scripts/Registry/ControllerStrategyRegistry.cs" id="1_nbfba"]
+
+[node name="ControllerStrategyRegistry" type="Node"]
+script = ExtResource("1_nbfba")
