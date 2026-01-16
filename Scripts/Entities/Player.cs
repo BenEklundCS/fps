@@ -30,7 +30,6 @@ public partial class Player : Character, IControllable {
     public override void _Ready() {
         _camera = GetNode<Camera3D>("Head/Camera3D");
         _weaponTextureRect = GetNode<TextureRect>("UIBar/WeaponTextureRect");
-        Input.MouseMode = Input.MouseModeEnum.Visible;
         ReadyWeapons();
         base._Ready();
     }

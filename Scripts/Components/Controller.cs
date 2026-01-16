@@ -10,6 +10,7 @@ public partial class Controller : Node {
 
     public override void _Ready() {
         _controlTarget = GetNode<IControllable>(Target);
+        Input.MouseMode = Input.MouseModeEnum.Visible;
     }
 
     public override void _PhysicsProcess(double delta) {
@@ -30,8 +31,8 @@ public partial class Controller : Node {
         foreach (var action in context.GetKeys()) {
             if (!@event.IsActionPressed(action)) continue;
             var controllerStrategy = context.Get(action);
+            if (controllerStrategy is null) return;
             controllerStrategy.Execute(@event, _controlTarget);
-            return;
         }
     }
 }

@@ -8,6 +8,7 @@ namespace CosmicDoom.Scripts.Registry;
 
 public partial class ControllerStrategyRegistry : Node, IRegistry<StringName, IControllerStrategy> {
     private static readonly ControllerScrollStrategy ScrollStrategy = new();
+    private static readonly ControllerLookStrategy LookStrategy = new();
     private readonly Dictionary<StringName, IControllerStrategy> _actionStrategies = new() {
         ["escape"] = new ControllerEscapeStrategy(),
         ["jump"] = new ControllerJumpStrategy(),
@@ -24,7 +25,7 @@ public partial class ControllerStrategyRegistry : Node, IRegistry<StringName, IC
 
     public IControllerStrategy Get(StringName key) {
         if (key == "look") {
-            return new ControllerLookStrategy();
+            return LookStrategy;
         }
         return _actionStrategies.GetValueOrDefault(key);
     }
