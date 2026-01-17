@@ -18,7 +18,6 @@ config/icon="res://icon.svg"
 [autoload]
 
 WeaponRegistry="*res://Scenes/Registry/weapon_registry.tscn"
-ControllerStrategyRegistry="*res://Scenes/Registry/controller_strategy_registry.tscn"
 
 [dotnet]
 

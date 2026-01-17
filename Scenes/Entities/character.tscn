@@ -13,3 +13,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
 
 [node name="RayCast3D" type="RayCast3D" parent="Head"]
 target_position = Vector3(0, 0, -1000)
+
+[node name="CooldownTimer" type="Timer" parent="."]
+one_shot = true

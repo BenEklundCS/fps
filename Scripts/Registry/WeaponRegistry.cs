@@ -9,48 +9,71 @@ namespace CosmicDoom.Scripts.Registry;
 using static GD;
 
 public partial class WeaponRegistry : Node, IRegistry<WeaponType, RWeapon> {
+    
+    
     private readonly Dictionary<WeaponType, RWeapon> _weaponRegistry = new() {
         [WeaponType.Knife] = new RWeapon(
             WeaponType.Knife,
             10,
+            1,
+            0f,
+            0.5f,
             Load<CompressedTexture2D>("res://Assets/Sprites/Weapons/weapon_knife.png"),
-            new WeaponKnifeStrategy()
+            new MeleeStrategy()
         ),
         [WeaponType.MachineGun] = new RWeapon(
             WeaponType.MachineGun,
             10,
+            1,
+            0f,
+            0.5f,
             Load<CompressedTexture2D>("res://Assets/Sprites/Weapons/weapon_machinegun.png"),
-            new WeaponMachineGunStrategy()
+            new HitscanStrategy()
         ),
         [WeaponType.PlasmaGun] = new RWeapon(
             WeaponType.PlasmaGun,
             10,
+            1,
+            0f,
+            0.1f,
             Load<CompressedTexture2D>("res://Assets/Sprites/Weapons/weapon_plasmagun.png"),
-            new WeaponPlasmaGunStrategy()
+            new HitscanStrategy()
         ),
         [WeaponType.RocketLauncher] = new RWeapon(
             WeaponType.RocketLauncher,
             10,
+            1,
+            0f,
+            2.0f,
             Load<CompressedTexture2D>("res://Assets/Sprites/Weapons/weapon_rocketlauncher.png"),
-            new WeaponRocketLauncherStrategy()
+            new ProjectileStrategy()
         ),
         [WeaponType.Shotgun] = new RWeapon(
             WeaponType.Shotgun,
             10,
+            10,
+            5.0f,
+            1.0f,
             Load<CompressedTexture2D>("res://Assets/Sprites/Weapons/weapon_shotgun.png"),
-            new WeaponShotgunStrategy()
+            new HitscanStrategy()
         ),
         [WeaponType.Solution] = new RWeapon(
             WeaponType.Solution,
             10,
+            1,
+            0f,
+            2.0f,
             Load<CompressedTexture2D>("res://Assets/Sprites/Weapons/weapon_solution.png"),
-            new WeaponSolutionStrategy()
+            new ProjectileStrategy()
         ),
         [WeaponType.None] = new RWeapon(
             WeaponType.None,
             10,
+            1,
+            0f,
+            0.1f,
             null,
-            new WeaponDefaultStrategy()
+            new DefaultStrategy()
         )
     };
 

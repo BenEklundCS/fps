@@ -15,7 +15,6 @@ public partial class Player : Character, IControllable {
     };
 
     private readonly float _maxPitch = Mathf.DegToRad(85f);
-
     private readonly List<RWeapon> _weaponWheel = new();
 
     private Camera3D _camera;
@@ -60,13 +59,15 @@ public partial class Player : Character, IControllable {
         Head.Rotation = new Vector3(clampedX, Head.Rotation.Y, Head.Rotation.Z);
     }
     
-    public void Attack() {
+    public new void Attack() {
         var weapon = _weaponWheel[_weaponIndex];
-        RAttackContext context = new(Ray, weapon, this);
-        var projectile = weapon.STRATEGY.Execute(context);
-        if (projectile != null) {
-            GetTree().Root.AddChild(projectile);
-        }
+        RAttackContext context = new(-Head.GlobalBasis.Z, Ray, weapon, this);
+        weapon.STRATEGY.Execute(context);
+        CooldownTimer.Start(weapon.COOLDOWN);
+    }
+
+    public bool CanAttack() {
+        return CooldownTimer.IsStopped();
     }
 
     public void NextWeapon() {
@@ -81,6 +82,7 @@ public partial class Player : Character, IControllable {
 
     private void EquipWeapon(int weaponIndex) {
         _weaponTextureRect.Texture = _weaponWheel[weaponIndex].TEXTURE;
+       CooldownTimer?.Stop();
     }
     
     private void ReadyWeapons() {

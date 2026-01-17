@@ -1,7 +1,11 @@
+namespace CosmicDoom.Scripts.Objects;
+
+using CosmicDoom.Scripts.Interfaces;
 using CosmicDoom.Scripts.Items;
 using Godot;
+using static Godot.GD;
 
-public partial class Laser : Node3D {
+public partial class Laser : Node3D, IProjectile, ISpawnable<Laser> {
     private Timer _timer;
     [Export] public float Duration = 2.0f;
     
@@ -10,10 +14,10 @@ public partial class Laser : Node3D {
     public override void _Ready() {
         _timer = GetNode<Timer>("Timer");
         _timer.Timeout += OnTimerTimeout;
-        
-        var forward = -_context.RAY.GlobalTransform.Basis.Z;
-        GlobalPosition = _context.RAY.GlobalPosition;
-        LookAt(GlobalPosition + forward, Vector3.Up);
+    }
+
+    public Laser Spawn() {
+        return (Laser)Load<PackedScene>("res://Scenes/Objects/laser.tscn").Instantiate();
     }
 
     public void SetContext(RAttackContext context) {

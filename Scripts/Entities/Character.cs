@@ -11,6 +11,8 @@ public abstract partial class Character : CharacterBody3D, IHittable {
 
     protected CollisionShape3D CollisionShape;
     protected Node3D Head;
+    protected Timer CooldownTimer;
+    
     [Export] public float JumpSpeed = 5.0f;
 
     protected RayCast3D Ray;
@@ -32,6 +34,7 @@ public abstract partial class Character : CharacterBody3D, IHittable {
     public override void _Ready() {
         Head = GetNode<Node3D>("Head");
         Ray = GetNode<RayCast3D>("Head/RayCast3D");
+        CooldownTimer = GetNode<Timer>("CooldownTimer");
         CollisionShape = GetNode<CollisionShape3D>("CollisionShape3D");
         _gravity = (float)ProjectSettings.GetSetting("physics/3d/default_gravity");
         base._Ready();
