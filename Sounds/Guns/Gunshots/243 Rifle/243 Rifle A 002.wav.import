@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://u5u1c2djggkm"
+path="res://.godot/imported/243 Rifle A 002.wav-f97daac7eba5f5f817cc31eee75e796f.sample"
+
+[deps]
+
+source_file="res://Sounds/Guns/Gunshots/243 Rifle/243 Rifle A 002.wav"
+dest_files=["res://.godot/imported/243 Rifle A 002.wav-f97daac7eba5f5f817cc31eee75e796f.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

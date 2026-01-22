@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cvmlwrfowfoo3" path="res://Scenes/Entities/character.tscn" id="1_cvnsp"]
 [ext_resource type="Script" uid="uid://b3g840rg73343" path="res://Scripts/Entities/Player.cs" id="2_cvnsp"]
-[ext_resource type="Texture2D" uid="uid://55un4umot2cn" path="res://Assets/Sprites/Weapons/weapon_plasmagun.png" id="3_qbyki"]
+[ext_resource type="PackedScene" uid="uid://bajkuqwah0f4a" path="res://Scenes/Objects/weapon.tscn" id="4_svftf"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qbyki"]
 
@@ -23,28 +23,9 @@ script = ExtResource("2_cvnsp")
 environment = SubResource("Environment_y18yp")
 far = 10000.0
 
-[node name="UIBar" type="Control" parent="." index="2"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 1152.0
-offset_bottom = 648.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="WeaponTextureRect" type="TextureRect" parent="UIBar" index="0"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -100.0
-offset_top = -200.0
-offset_right = 100.0
-grow_horizontal = 2
-grow_vertical = 0
-texture = ExtResource("3_qbyki")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="3"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
 transform = Transform3D(0.997517, 0, 0, 0, 0.997517, 0, 0, 0, 0.997517, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_1f0kj")
+
+[node name="Weapon" parent="." index="2" instance=ExtResource("4_svftf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.29647, 0)

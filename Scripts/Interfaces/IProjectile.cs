@@ -1,7 +1,13 @@
-﻿using CosmicDoom.Scripts.Items;
+﻿namespace CosmicDoom.Scripts.Interfaces;
+using Context;
+using Godot;
 
-namespace CosmicDoom.Scripts.Interfaces;
 
 public interface IProjectile {
-    public void SetContext(RAttackContext context);
+    void SetContext(RAttackContext context);
+    IProjectile Spawn();
+}
+
+public interface IProjectile<TProjectile> : IProjectile where TProjectile : Node3D, IProjectile {
+    new TProjectile Spawn(); 
 }

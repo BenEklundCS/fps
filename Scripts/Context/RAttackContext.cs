@@ -1,8 +1,7 @@
-﻿using Godot;
-
-namespace CosmicDoom.Scripts.Items;
-
+﻿namespace CosmicDoom.Scripts.Context;
+using Godot;
 using Entities;
+using Items;
 
 public record RAttackContext(
     Vector3 FORWARD,

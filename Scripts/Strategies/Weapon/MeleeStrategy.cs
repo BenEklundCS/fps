@@ -1,8 +1,7 @@
-using CosmicDoom.Scripts.Interfaces;
-using CosmicDoom.Scripts.Items;
-using Godot;
-
 namespace CosmicDoom.Scripts.Strategies.Weapon;
+
+using Godot;
+using Context;
 
 public class MeleeStrategy : IWeaponStrategy {
     public void Execute(RAttackContext context) {

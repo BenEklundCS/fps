@@ -1,10 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bhq5qufg4vqxu"]
+[gd_scene load_steps=4 format=3 uid="uid://bhq5qufg4vqxu"]
 
 [ext_resource type="PackedScene" uid="uid://bysmidth4brdd" path="res://Scenes/Levels/level.tscn" id="1_jqmhs"]
 [ext_resource type="PackedScene" uid="uid://elqd5fnawpft" path="res://Scenes/Objects/hittable_box.tscn" id="2_u3rbo"]
-[ext_resource type="PackedScene" uid="uid://th8316ughjb8" path="res://Scenes/Buildings/3_sided_room.tscn" id="4_eqind"]
-[ext_resource type="PackedScene" uid="uid://l03aemwf4qfq" path="res://Scenes/Buildings/hallway.tscn" id="5_dxwen"]
-[ext_resource type="PackedScene" uid="uid://bg1b5sigir0o5" path="res://Scenes/Buildings/2_sided_room.tscn" id="5_u3h2l"]
+[ext_resource type="PackedScene" uid="uid://bg1b5sigir0o5" path="res://Scenes/Buildings/room.tscn" id="3_70edh"]
 
 [node name="LevelOne" instance=ExtResource("1_jqmhs")]
 
@@ -17,10 +15,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.82683, 1.05853, 6.24477)
 [node name="HittableBox3" parent="Objects" index="2" instance=ExtResource("2_u3rbo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.76205, 1.1913, 6.24477)
 
-[node name="Hallway" parent="." index="2" instance=ExtResource("5_dxwen")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.9256, 0.0257134, -0.223576)
-
-[node name="3SidedRoom" parent="." index="3" instance=ExtResource("4_eqind")]
-
-[node name="2SidedRoom" parent="." index="4" instance=ExtResource("5_u3h2l")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.8772, 0, 0)
+[node name="Room" parent="." index="2" instance=ExtResource("3_70edh")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)

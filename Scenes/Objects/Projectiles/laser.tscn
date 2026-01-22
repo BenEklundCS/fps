@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://came7g8wpfqf4"]
+
+[ext_resource type="Script" uid="uid://brk37rlvt4k3" path="res://Scripts/Objects/Projectiles/Laser.cs" id="1_3so2l"]
+[ext_resource type="PackedScene" uid="uid://ij3dojbkgdcd" path="res://Scenes/Objects/Projectiles/projectile.tscn" id="1_rg342"]
+[ext_resource type="Shader" uid="uid://dwsnd8j2pnin5" path="res://Shaders/laser.gdshader" id="2_b80xb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r1bh0"]
+render_priority = 0
+shader = ExtResource("2_b80xb")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_rsnld"]
+material = SubResource("ShaderMaterial_r1bh0")
+top_radius = 0.01
+bottom_radius = 0.01
+height = 10.0
+
+[node name="Laser" instance=ExtResource("1_rg342")]
+script = ExtResource("1_3so2l")
+Duration = 2.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -5)
+mesh = SubResource("CylinderMesh_rsnld")
+
+[node name="Timer" type="Timer" parent="." index="2"]
+wait_time = 2.0
+autostart = true

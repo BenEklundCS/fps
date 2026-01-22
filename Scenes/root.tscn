@@ -14,6 +14,7 @@ script = ExtResource("1_8pvmw")
 DebugPath = NodePath("")
 
 [node name="LevelOne" parent="." instance=ExtResource("5_ckhy6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.43067, 0)
 
 [node name="Controller" parent="." instance=ExtResource("4_4g5cr")]
 Target = NodePath("Player")

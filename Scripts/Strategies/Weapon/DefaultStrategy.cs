@@ -1,11 +1,7 @@
-﻿using CosmicDoom.Scripts.Interfaces;
-using CosmicDoom.Scripts.Items;
-using CosmicDoom.Scripts.Objects;
-
-namespace CosmicDoom.Scripts.Strategies.Weapon;
+﻿namespace CosmicDoom.Scripts.Strategies.Weapon;
 
 using Godot;
-using static Godot.GD;
+using Context;
 
 public partial class DefaultStrategy : IWeaponStrategy {
     public void Execute(RAttackContext context) {

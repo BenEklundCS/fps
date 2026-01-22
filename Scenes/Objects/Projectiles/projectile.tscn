@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://ij3dojbkgdcd"]
+
+[ext_resource type="Script" uid="uid://b28rewkbl1hk" path="res://Scripts/Objects/Projectiles/Projectile.cs" id="1_3rrhb"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_cjf27"]
+
+[node name="Projectile" type="Node3D"]
+script = ExtResource("1_3rrhb")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_cjf27")

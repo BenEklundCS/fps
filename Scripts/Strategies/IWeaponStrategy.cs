@@ -1,8 +1,5 @@
-﻿using CosmicDoom.Scripts.Interfaces;
-using CosmicDoom.Scripts.Items;
-using Godot;
-
-namespace CosmicDoom.Scripts.Strategies;
+﻿namespace CosmicDoom.Scripts.Strategies;
+using Context;
 
 public interface IWeaponStrategy {
     #nullable enable

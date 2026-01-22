@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using CosmicDoom.Scripts.Interfaces;
 using CosmicDoom.Scripts.Items;
+using CosmicDoom.Scripts.Objects.Projectiles;
 using CosmicDoom.Scripts.Strategies.Weapon;
 using Godot;
 
@@ -17,6 +18,8 @@ public partial class WeaponRegistry : Node, IRegistry<WeaponType, RWeapon> {
             0f,
             0.5f,
             Load<CompressedTexture2D>("res://Assets/Sprites/Weapons/weapon_knife.png"),
+            [],
+            new Laser(),
             new MeleeStrategy()
         ),
         [WeaponType.MachineGun] = new RWeapon(
@@ -26,6 +29,8 @@ public partial class WeaponRegistry : Node, IRegistry<WeaponType, RWeapon> {
             0f,
             0.5f,
             Load<CompressedTexture2D>("res://Assets/Sprites/Weapons/weapon_machinegun.png"),
+            [],
+            new Laser(),
             new HitscanStrategy()
         ),
         [WeaponType.PlasmaGun] = new RWeapon(
@@ -35,6 +40,12 @@ public partial class WeaponRegistry : Node, IRegistry<WeaponType, RWeapon> {
             0f,
             0.1f,
             Load<CompressedTexture2D>("res://Assets/Sprites/Weapons/weapon_plasmagun.png"),
+            [
+                Load<AudioStreamWav>("res://Sounds/Guns/Gunshots/243 Rifle/243 Rifle A 001.wav"),
+                Load<AudioStreamWav>("res://Sounds/Guns/Gunshots/243 Rifle/243 Rifle A 002.wav"),
+                Load<AudioStreamWav>("res://Sounds/Guns/Gunshots/243 Rifle/243 Rifle A 003.wav"),
+            ],
+            new Laser(),
             new HitscanStrategy()
         ),
         [WeaponType.RocketLauncher] = new RWeapon(
@@ -44,6 +55,8 @@ public partial class WeaponRegistry : Node, IRegistry<WeaponType, RWeapon> {
             0f,
             2.0f,
             Load<CompressedTexture2D>("res://Assets/Sprites/Weapons/weapon_rocketlauncher.png"),
+            [],
+            new Laser(),
             new ProjectileStrategy()
         ),
         [WeaponType.Shotgun] = new RWeapon(
@@ -53,6 +66,12 @@ public partial class WeaponRegistry : Node, IRegistry<WeaponType, RWeapon> {
             5.0f,
             1.0f,
             Load<CompressedTexture2D>("res://Assets/Sprites/Weapons/weapon_shotgun.png"),
+            [
+                Load<AudioStreamWav>("res://Sounds/Guns/Gunshots/Dragonsbreath Shotgun/Dragonsbreath Shotgun A 001.wav"),
+                Load<AudioStreamWav>("res://Sounds/Guns/Gunshots/Dragonsbreath Shotgun/Dragonsbreath Shotgun A 002.wav"),
+                Load<AudioStreamWav>("res://Sounds/Guns/Gunshots/Dragonsbreath Shotgun/Dragonsbreath Shotgun A 003.wav"),
+            ],
+            new Laser(),
             new HitscanStrategy()
         ),
         [WeaponType.Solution] = new RWeapon(
@@ -62,6 +81,8 @@ public partial class WeaponRegistry : Node, IRegistry<WeaponType, RWeapon> {
             0f,
             2.0f,
             Load<CompressedTexture2D>("res://Assets/Sprites/Weapons/weapon_solution.png"),
+            [],
+            new Laser(),
             new ProjectileStrategy()
         ),
         [WeaponType.None] = new RWeapon(
@@ -71,6 +92,8 @@ public partial class WeaponRegistry : Node, IRegistry<WeaponType, RWeapon> {
             0f,
             0.1f,
             null,
+            [],
+            new Laser(),
             new DefaultStrategy()
         )
     };

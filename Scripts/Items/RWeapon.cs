@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using CosmicDoom.Scripts.Interfaces;
+using Godot;
 
 namespace CosmicDoom.Scripts.Items;
 using Strategies;
@@ -20,5 +21,7 @@ public record RWeapon(
     float SPREAD_DEGREES, // degrees
     float COOLDOWN,
     CompressedTexture2D TEXTURE,
+    AudioStreamWav[] AUDIO_STREAMS,
+    IProjectile PROJECTILE,
     IWeaponStrategy STRATEGY
 );

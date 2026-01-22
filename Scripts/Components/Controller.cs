@@ -22,10 +22,7 @@ public partial class Controller : Node {
                 Input.MouseMode = Input.MouseModeEnum.Captured;
                 return;
             }
-
-            if (_controlTarget.CanAttack()) {
-                _controlTarget.Attack();
-            }
+            _controlTarget.Attack();
         }
     }
 

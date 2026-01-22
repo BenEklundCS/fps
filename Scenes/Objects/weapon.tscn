@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://bajkuqwah0f4a"]
+
+[ext_resource type="Script" uid="uid://boyomhck8a6ip" path="res://Scripts/Objects/Weapon.cs" id="1_58sax"]
+
+[node name="Weapon" type="Node3D"]
+script = ExtResource("1_58sax")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+volume_db = 1.0
+
+[node name="TextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(200, 200)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="CooldownTimer" type="Timer" parent="."]
+one_shot = true
