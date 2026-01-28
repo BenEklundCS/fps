@@ -18,6 +18,8 @@ public record RWeapon(
     WeaponType TYPE,
     int DAMAGE,
     int SHOT_COUNT, // shots per round
+    int AMMO,
+    int MAX_AMMO,
     float SPREAD_DEGREES, // degrees
     float COOLDOWN,
     CompressedTexture2D TEXTURE,

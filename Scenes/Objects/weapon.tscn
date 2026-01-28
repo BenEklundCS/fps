@@ -7,18 +7,18 @@
 script = ExtResource("1_58sax")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
-volume_db = 1.0
+max_db = 0.0
 
 [node name="CooldownTimer" type="Timer" parent="."]
 one_shot = true
 
-[node name="Control" type="Control" parent="."]
+[node name="UI" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1152.0
 offset_bottom = 648.0
 
-[node name="WeaponTexture" type="TextureRect" parent="Control"]
+[node name="WeaponTexture" type="TextureRect" parent="UI"]
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 1
 anchors_preset = 7
@@ -32,7 +32,7 @@ offset_right = 100.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="OnUseTexture" type="TextureRect" parent="Control"]
+[node name="OnUseTexture" type="TextureRect" parent="UI"]
 visible = false
 z_index = -1
 custom_minimum_size = Vector2(250, 250)
@@ -42,12 +42,25 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = -40.0
-offset_right = 20.0
+offset_left = -125.0
+offset_top = -250.0
+offset_right = 125.0
 grow_horizontal = 2
 grow_vertical = 0
 texture = ExtResource("2_4mp76")
 
+[node name="Ammo" type="Label" parent="UI"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+offset_right = 40.0
+grow_vertical = 0
+text = "100 / 10"
+
 [node name="OnUseRectVisibilityTimer" type="Timer" parent="."]
 wait_time = 0.1
+
+[node name="ReloadTimer" type="Timer" parent="."]
+one_shot = true

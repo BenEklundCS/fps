@@ -18,8 +18,8 @@ public partial class Player : Character, IControllable {
         WeaponType.RocketLauncher
     };
     private readonly List<RWeapon> _weaponWheel = new();
+    
     private int _weaponIndex;
-
     private readonly float _maxPitch = Mathf.DegToRad(85f);
     private Camera3D _camera;
     private Weapon _weapon;
