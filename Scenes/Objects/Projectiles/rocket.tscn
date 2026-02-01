@@ -1,17 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://bhw4g7jnnwwvf"]
+[gd_scene load_steps=4 format=3 uid="uid://bhw4g7jnnwwvf"]
 
 [ext_resource type="Script" uid="uid://bcav1opxnwd56" path="res://Scripts/Objects/Projectiles/Rocket.cs" id="1_k6at0"]
-[ext_resource type="Shader" uid="uid://bxd1wxj31roi4" path="res://Shaders/texture_uniform.gdshader" id="2_miwc0"]
-[ext_resource type="Texture2D" uid="uid://b2odtl4dp65dp" path="res://Assets/Sprites/Effects/effect_fireball.png" id="3_jpm1x"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_x6xj6"]
-render_priority = 0
-shader = ExtResource("2_miwc0")
-shader_parameter/texture_uniform = ExtResource("3_jpm1x")
-shader_parameter/tiling_factor = 1.0
-
-[sub_resource type="SphereMesh" id="SphereMesh_uxjqg"]
-material = SubResource("ShaderMaterial_x6xj6")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_miwc0"]
 
@@ -20,9 +9,6 @@ radius = 1.34637
 
 [node name="Rocket" type="Node3D"]
 script = ExtResource("1_k6at0")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("SphereMesh_uxjqg")
 
 [node name="CollisionBox" type="Area3D" parent="."]
 

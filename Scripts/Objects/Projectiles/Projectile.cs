@@ -5,7 +5,7 @@ using static Godot.GD;
 using Interfaces;
 using Context;
 
-public partial class Projectile(float projectileSpeed = 0.0f) : Node3D, IProjectile<Projectile> {
+public partial class Projectile : Node3D, IProjectile<Projectile> {
     protected RAttackContext Context;
     protected Vector3 Velocity;
     
