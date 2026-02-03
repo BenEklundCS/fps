@@ -30,12 +30,14 @@ public partial class Rocket : Projectile {
     }
 
     private void Explode() {
+        Print("Exploding");
         Velocity = Vector3.Zero;
 
-        // Spawn explosion at rocket position (add to parent scene, not rocket)
+        // Spawn explosion at rocket position
         var explosion = ExplosionScene.Instantiate<Node3D>();
+        var spawnPos = GlobalPosition;
+        explosion.Position = spawnPos; // Set position BEFORE adding to tree
         GetTree().Root.AddChild(explosion);
-        explosion.GlobalPosition = GlobalPosition;
         // explosion auto-starts and auto-frees by default
 
         // Deal damage to overlapping bodies

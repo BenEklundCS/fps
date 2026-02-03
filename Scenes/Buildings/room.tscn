@@ -1,10 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://bg1b5sigir0o5"]
+[gd_scene load_steps=6 format=3 uid="uid://bg1b5sigir0o5"]
 
 [ext_resource type="Shader" uid="uid://bxd1wxj31roi4" path="res://Shaders/texture_uniform.gdshader" id="1_r5h25"]
 [ext_resource type="Texture2D" uid="uid://bose05fqh0dho" path="res://Assets/Sprites/Walls/wall_texture12.png" id="2_acgtb"]
+[ext_resource type="PackedScene" uid="uid://53y34xwgk2fg" path="res://Scenes/Objects/Decor/ceiling_light.tscn" id="3_acgtb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r5h25"]
-render_priority = 0
+render_priority = -2
 shader = ExtResource("1_r5h25")
 shader_parameter/texture_uniform = ExtResource("2_acgtb")
 shader_parameter/tiling_factor = 15.0
@@ -14,21 +15,35 @@ data = PackedVector3Array(-0.783691, -0.5, 7.48315, 5.5, -0.5, -4.5, 0.499999, -
 
 [node name="Room" type="Node3D"]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
+[node name="Building" type="StaticBody3D" parent="."]
 
-[node name="CSGCombiner3D" type="CSGCombiner3D" parent="StaticBody3D"]
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Building"]
 
-[node name="Walls" type="CSGBox3D" parent="StaticBody3D/CSGCombiner3D"]
+[node name="Walls" type="CSGBox3D" parent="Building/CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 1.5)
+cast_shadow = 2
+extra_cull_margin = 4.0
 use_collision = true
 flip_faces = true
 size = Vector3(11, 4, 12)
 material = SubResource("ShaderMaterial_r5h25")
 
-[node name="Subtract" type="CSGBox3D" parent="StaticBody3D/CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.141846, 0.5, 7.57013)
+[node name="Subtract" type="CSGBox3D" parent="Building/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.141846, 0.5, 13.0465)
 operation = 2
 size = Vector3(1.28369, 2, 0.17395)
 
-[node name="CSGBakedCollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="CSGBakedCollisionShape3D" type="CollisionShape3D" parent="Building"]
 shape = SubResource("ConcavePolygonShape3D_r5h25")
+
+[node name="CeilingLight" parent="Building" instance=ExtResource("3_acgtb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.62018, 3.39529, -2.84684)
+
+[node name="CeilingLight2" parent="Building" instance=ExtResource("3_acgtb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.94946, 3.39529, -2.84684)
+
+[node name="CeilingLight3" parent="Building" instance=ExtResource("3_acgtb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.62018, 3.39529, 6.3231)
+
+[node name="CeilingLight4" parent="Building" instance=ExtResource("3_acgtb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.94946, 3.39529, 6.3231)

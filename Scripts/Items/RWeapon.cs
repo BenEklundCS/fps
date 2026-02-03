@@ -25,5 +25,9 @@ public record RWeapon(
     CompressedTexture2D ON_USE_TEXTURE,
     CompressedTexture2D ICON,
     AudioStreamWav[] AUDIO_STREAMS,
-    IWeaponStrategy STRATEGY
-);
+    IWeaponStrategy STRATEGY,
+    Vector3? SHOT_OFFSET = null
+) {
+    // Default offset: down and forward from camera to gun barrel
+    public Vector3 ShotOffset => SHOT_OFFSET ?? new Vector3(0, -0.3f, -0.5f);
+}

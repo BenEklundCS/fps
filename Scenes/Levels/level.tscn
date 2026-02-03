@@ -1,7 +1,3 @@
 [gd_scene format=3 uid="uid://bysmidth4brdd"]
 
 [node name="Level" type="Node3D"]
-
-[node name="Objects" type="Node" parent="."]
-
-[node name="Enemies" type="Node" parent="."]

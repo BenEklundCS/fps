@@ -52,7 +52,7 @@ public partial class WeaponRegistry : Node, IRegistry<WeaponType, RWeapon> {
                 Load<AudioStreamWav>("res://Sounds/Guns/Gunshots/243 Rifle/243 Rifle A 002.wav"),
                 Load<AudioStreamWav>("res://Sounds/Guns/Gunshots/243 Rifle/243 Rifle A 003.wav"),
             ],
-            new HitscanStrategy()
+            new ProjectileStrategy(projectile: new PlasmaBall(), projectileVelocity: 25f)
         ),
         [WeaponType.RocketLauncher] = new RWeapon(
             WeaponType.RocketLauncher,

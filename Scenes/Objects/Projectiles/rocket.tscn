@@ -1,6 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://bhw4g7jnnwwvf"]
+[gd_scene load_steps=6 format=3 uid="uid://bhw4g7jnnwwvf"]
 
 [ext_resource type="Script" uid="uid://bcav1opxnwd56" path="res://Scripts/Objects/Projectiles/Rocket.cs" id="1_k6at0"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_rocket"]
+top_radius = 0.05
+bottom_radius = 0.08
+height = 0.4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rocket"]
+albedo_color = Color(0.1, 0.1, 0.1, 1)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_miwc0"]
 
@@ -9,6 +17,11 @@ radius = 1.34637
 
 [node name="Rocket" type="Node3D"]
 script = ExtResource("1_k6at0")
+
+[node name="RocketMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
+mesh = SubResource("CylinderMesh_rocket")
+surface_material_override/0 = SubResource("StandardMaterial3D_rocket")
 
 [node name="CollisionBox" type="Area3D" parent="."]
 

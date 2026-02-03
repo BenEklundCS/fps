@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://pillar_decor_001"]
+
+[ext_resource type="Texture2D" uid="uid://bqmfqvnwb53u1" path="res://Assets/Sprites/Walls/wall_texture2.png" id="1_pillar"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1"]
+texture_filter = 0
+albedo_texture = ExtResource("1_pillar")
+uv1_scale = Vector3(1, 3, 1)
+
+[node name="Pillar" type="StaticBody3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+use_collision = true
+size = Vector3(0.8, 3, 0.8)
+material = SubResource("StandardMaterial3D_1")

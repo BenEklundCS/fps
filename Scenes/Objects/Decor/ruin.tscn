@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://ruin_decor_001"]
+
+[ext_resource type="Texture2D" uid="uid://bvjafvnhapjjp" path="res://Assets/Sprites/Items/item_ruin.png" id="1_ruin"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1"]
+size = Vector3(1.0, 1.5, 1.0)
+
+[node name="Ruin" type="StaticBody3D"]
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+pixel_size = 0.05
+billboard = 1
+texture_filter = 0
+alpha_cut = 1
+texture = ExtResource("1_ruin")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+shape = SubResource("BoxShape3D_1")

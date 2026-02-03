@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://Scripts/Objects/Projectiles/PlasmaBall.cs" id="1_script"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_plasma"]
+radius = 0.08
+height = 0.16
+radial_segments = 12
+rings = 6
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_plasma"]
+resource_local_to_scene = true
+shading_mode = 0
+albedo_color = Color(0.2, 0.8, 1.0, 1)
+emission_enabled = true
+emission = Color(0.2, 0.8, 1.0, 1)
+emission_energy_multiplier = 4.0
+disable_receive_shadows = true
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_collision"]
+radius = 0.1
+
+[node name="PlasmaBall" type="Node3D"]
+script = ExtResource("1_script")
+
+[node name="PlasmaMesh" type="MeshInstance3D" parent="."]
+extra_cull_margin = 99999.0
+custom_aabb = AABB(-1000, -1000, -1000, 2000, 2000, 2000)
+mesh = SubResource("SphereMesh_plasma")
+surface_material_override/0 = SubResource("StandardMaterial3D_plasma")
+
+[node name="PlasmaLight" type="OmniLight3D" parent="."]
+light_color = Color(0.2, 0.8, 1.0, 1)
+light_energy = 2.0
+omni_range = 3.0
+
+[node name="CollisionBox" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CollisionBox"]
+shape = SubResource("SphereShape3D_collision")

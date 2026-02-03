@@ -1,17 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://dif7wvkvbhwlv"]
+[gd_scene load_steps=5 format=3 uid="uid://dif7wvkvbhwlv"]
 
 [ext_resource type="PackedScene" uid="uid://cvmlwrfowfoo3" path="res://Scenes/Entities/character.tscn" id="1_cvnsp"]
 [ext_resource type="Script" uid="uid://b3g840rg73343" path="res://Scripts/Entities/Player.cs" id="2_cvnsp"]
 [ext_resource type="PackedScene" uid="uid://bajkuqwah0f4a" path="res://Scenes/Objects/weapon.tscn" id="4_svftf"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qbyki"]
-
-[sub_resource type="Sky" id="Sky_svftf"]
-sky_material = SubResource("ProceduralSkyMaterial_qbyki")
-
-[sub_resource type="Environment" id="Environment_y18yp"]
-background_mode = 2
-sky = SubResource("Sky_svftf")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1f0kj"]
 radius = 0.218217
@@ -20,7 +11,6 @@ radius = 0.218217
 script = ExtResource("2_cvnsp")
 
 [node name="Camera3D" type="Camera3D" parent="Head" index="1"]
-environment = SubResource("Environment_y18yp")
 far = 10000.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
