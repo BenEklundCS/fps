@@ -5,10 +5,11 @@
         <RootNamespace>CosmicDoom</RootNamespace>
     </PropertyGroup>
     <ItemGroup>
+        <Content Include="Scenes\Effects\effect.tscn" />
         <Content Include="Shaders\laser.gdshader"/>
         <Content Include="Shaders\laser.gdshader.uid"/>
     </ItemGroup>
     <ItemGroup>
-        <Folder Include="Scenes\"/>
+        <Folder Include="Scripts\Effects\" />
     </ItemGroup>
 </Project>

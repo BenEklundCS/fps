@@ -23,16 +23,23 @@ public partial class Player : Character, IControllable {
     private readonly float _maxPitch = Mathf.DegToRad(85f);
     private Camera3D _camera;
     private Weapon _weapon;
+    private Label _healthLabel;
     
     [Export] public float MouseSensitivity = 0.005f;
 
     public override void _Ready() {
         _weapon = GetNode<Weapon>("Weapon");
         _camera = GetNode<Camera3D>("Head/Camera3D");
+        _healthLabel = GetNode<Label>("Label");
         ReadyWeapons();
         base._Ready();
     }
-    
+
+    public override void _Process(double delta) {
+        _healthLabel.Text = HEALTH.ToString();
+        base._Process(delta);
+    }
+
     public void Move(Vector3 movement) {
         var direction = Transform.Basis * movement;
         

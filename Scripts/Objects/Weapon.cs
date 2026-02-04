@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading;
+using CosmicDoom.Scripts.Entities;
 
 namespace CosmicDoom.Scripts.Objects;
 
@@ -22,18 +23,27 @@ public partial class Weapon : Node3D, IWeapon {
     private Timer _reloadTimer;
     private Timer _onUseRectVisibilityTimer;
     private Label _ammoLabel;
-    
+    private bool _hasUi;
+
     public override void _Ready() {
         _audio = GetNode<AudioStreamPlayer3D>("AudioStreamPlayer3D");
-        _weaponRect = GetNode<TextureRect>("UI/WeaponTexture");
-        _onUseRect = GetNode<TextureRect>("UI/OnUseTexture");
-        _weaponIconRect = GetNode<TextureRect>("UI/BoxContainer/WeaponIcon");
         _cooldownTimer = GetNode<Timer>("CooldownTimer");
         _reloadTimer = GetNode<Timer>("ReloadTimer");
         _reloadTimer.Timeout += Reload;
-        _onUseRectVisibilityTimer = GetNode<Timer>("OnUseRectVisibilityTimer");
-        _onUseRectVisibilityTimer.Timeout += () => { _onUseRect.Visible = false; };
-        _ammoLabel = GetNode<Label>("UI/Ammo");
+
+        _hasUi = GetParent() is Player;
+        var ui = GetNodeOrNull<Control>("UI");
+        if (_hasUi) {
+            _weaponRect = GetNode<TextureRect>("UI/WeaponTexture");
+            _onUseRect = GetNode<TextureRect>("UI/OnUseTexture");
+            _weaponIconRect = GetNode<TextureRect>("UI/BoxContainer/WeaponIcon");
+            _onUseRectVisibilityTimer = GetNode<Timer>("OnUseRectVisibilityTimer");
+            _onUseRectVisibilityTimer.Timeout += () => { _onUseRect.Visible = false; };
+            _ammoLabel = GetNode<Label>("UI/Ammo");
+        } else {
+            ui?.QueueFree();
+            GetNodeOrNull<Timer>("OnUseRectVisibilityTimer")?.QueueFree();
+        }
     }
 
     public void Equip(RWeapon rWeapon) {
@@ -52,13 +62,15 @@ public partial class Weapon : Node3D, IWeapon {
 
     public void Use(RAttackContext context) {
         var ammo = GetAmmo();
-        
+
         if (ammo > 0) {
             if (_cooldownTimer.IsStopped()) {
                 _rWeapon.STRATEGY.Execute(context);
                 _cooldownTimer.Start();
-                _onUseRectVisibilityTimer.Start();
-                _onUseRect.Visible = true;
+                if (_hasUi) {
+                    _onUseRectVisibilityTimer.Start();
+                    _onUseRect.Visible = true;
+                }
                 UpdateCurrentMagazine(true);
             }
         }
@@ -135,12 +147,14 @@ public partial class Weapon : Node3D, IWeapon {
     }
 
     private void UpdateGunTexture() {
+        if (!_hasUi) return;
         _weaponRect.Texture = _rWeapon.TEXTURE;
         _onUseRect.Texture = _rWeapon.ON_USE_TEXTURE;
         _weaponIconRect.Texture = _rWeapon.ICON;
     }
 
     private void UpdateAmmoLabel(Magazine mag, int magCount, bool visible) {
+        if (!_hasUi) return;
         _ammoLabel.Visible = visible;
         _ammoLabel.Text = $"{mag.Mag} / {magCount}";
     }

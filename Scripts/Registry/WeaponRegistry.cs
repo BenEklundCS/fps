@@ -56,7 +56,7 @@ public partial class WeaponRegistry : Node, IRegistry<WeaponType, RWeapon> {
         ),
         [WeaponType.RocketLauncher] = new RWeapon(
             WeaponType.RocketLauncher,
-            10,
+            100,
             true,
             1,
             5,

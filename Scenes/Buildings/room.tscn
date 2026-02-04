@@ -28,11 +28,6 @@ flip_faces = true
 size = Vector3(11, 4, 12)
 material = SubResource("ShaderMaterial_r5h25")
 
-[node name="Subtract" type="CSGBox3D" parent="Building/CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.141846, 0.5, 13.0465)
-operation = 2
-size = Vector3(1.28369, 2, 0.17395)
-
 [node name="CSGBakedCollisionShape3D" type="CollisionShape3D" parent="Building"]
 shape = SubResource("ConcavePolygonShape3D_r5h25")
 

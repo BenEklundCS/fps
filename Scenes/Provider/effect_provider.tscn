@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b6kg84uk61f1w"]
+
+[ext_resource type="Script" uid="uid://1plga63xtk28" path="res://Scripts/Provider/EffectProvider.cs" id="1_rk7pm"]
+
+[node name="EffectProvider" type="Node"]
+script = ExtResource("1_rk7pm")

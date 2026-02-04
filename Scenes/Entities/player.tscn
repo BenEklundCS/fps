@@ -19,3 +19,7 @@ shape = SubResource("CapsuleShape3D_1f0kj")
 
 [node name="Weapon" parent="." index="2" instance=ExtResource("4_svftf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.29647, 0)
+
+[node name="Label" type="Label" parent="." index="3"]
+offset_right = 279.0
+offset_bottom = 61.0

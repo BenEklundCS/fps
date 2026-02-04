@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://t5vyclegttms"]
+[gd_scene load_steps=11 format=3 uid="uid://t5vyclegttms"]
 
 [ext_resource type="Script" uid="uid://csbrlwrxv12c1" path="res://Scripts/Root.cs" id="1_8pvmw"]
 [ext_resource type="PackedScene" uid="uid://bhdhjpb222xe2" path="res://Scenes/debug.tscn" id="3_vnucn"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dif7wvkvbhwlv" path="res://Scenes/Entities/player.tscn" id="5_4g5cr"]
 [ext_resource type="PackedScene" uid="uid://bhq5qufg4vqxu" path="res://Scenes/Levels/level_one.tscn" id="5_ckhy6"]
 [ext_resource type="PackedScene" uid="uid://cqc52y3m8xp1" path="res://Scenes/Entities/enemy.tscn" id="6_ckhy6"]
+[ext_resource type="PackedScene" uid="uid://dmt6bb2w3t8yw" path="res://Scenes/Components/ai_controller.tscn" id="6_dun2r"]
 
 [sub_resource type="Environment" id="Environment_ckhy6"]
 background_mode = 1
@@ -41,11 +42,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.43067, 0)
 Target = NodePath("Player")
 
 [node name="Player" parent="Controller" instance=ExtResource("5_4g5cr")]
-
-[node name="Enemy" parent="." instance=ExtResource("6_ckhy6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.66186, 0.307465, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.59516, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ckhy6")
 camera_attributes = SubResource("CameraAttributesPractical_dun2r")
 compositor = SubResource("Compositor_r3lo5")
+
+[node name="AiController" parent="." instance=ExtResource("6_dun2r")]
+Target = NodePath("Enemy")
+
+[node name="Enemy" parent="AiController" instance=ExtResource("6_ckhy6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.66186, 0.307465, 0)

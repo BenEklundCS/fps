@@ -18,6 +18,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 WeaponRegistry="*res://Scenes/Registry/weapon_registry.tscn"
+EffectProvider="*res://Scenes/Provider/effect_provider.tscn"
+EnemyAiRegistry="*res://Scenes/Registry/enemy_ai_registry.tscn"
 
 [dotnet]
 

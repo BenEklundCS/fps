@@ -28,7 +28,9 @@ public abstract partial class Character : CharacterBody3D, IHittable {
         
         Print($"{Name} died.");
         EmitSignalOnDeath();
-        QueueFree();
+        Callable.From(() => {
+            QueueFree();
+        }).CallDeferred();
     }
 
     public override void _Ready() {

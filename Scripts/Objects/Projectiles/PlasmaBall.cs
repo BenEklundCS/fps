@@ -46,7 +46,7 @@ public partial class PlasmaBall : Projectile {
     }
 
     private void OnBodyEntered(Node3D body) {
-        if (body is Player) return;
+        if (body == Context.ATTACKER) return;
         Hit(body);
     }
 

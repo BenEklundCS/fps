@@ -1,5 +1,7 @@
+using CosmicDoom.Scripts.Effects;
 using CosmicDoom.Scripts.Entities;
 using CosmicDoom.Scripts.Interfaces;
+using CosmicDoom.Scripts.Registry;
 using Godot;
 
 namespace CosmicDoom.Scripts.Objects.Projectiles;
@@ -8,8 +10,7 @@ using static Godot.GD;
 public partial class Rocket : Projectile {
     private Area3D _collisionBox;
     private Area3D _explosionBox;
-    private static readonly PackedScene ExplosionScene = GD.Load<PackedScene>("res://addons/ExplosionVFX/explosion.tscn");
-
+    
     public override void _Ready() {
         _collisionBox = GetNode<Area3D>("CollisionBox");
         _collisionBox.BodyEntered += OnBodyEntered;
@@ -30,20 +31,13 @@ public partial class Rocket : Projectile {
     }
 
     private void Explode() {
-        Print("Exploding");
         Velocity = Vector3.Zero;
-
-        // Spawn explosion at rocket position
-        var explosion = ExplosionScene.Instantiate<Node3D>();
-        var spawnPos = GlobalPosition;
-        explosion.Position = spawnPos; // Set position BEFORE adding to tree
-        GetTree().Root.AddChild(explosion);
-        // explosion auto-starts and auto-frees by default
-
+        
+        EffectProvider.INSTANCE.SpawnEffectAt(EffectType.Explosion, GlobalPosition);
+        
         // Deal damage to overlapping bodies
         var bodies = _explosionBox.GetOverlappingBodies();
         foreach (var body in bodies) {
-            if (body is Player) continue;
             if (body is IHittable hittable) hittable.Hit(Context.WEAPON.DAMAGE);
         }
 

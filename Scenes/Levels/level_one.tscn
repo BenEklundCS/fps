@@ -6,14 +6,14 @@
 
 [node name="LevelOne" instance=ExtResource("1_jqmhs")]
 
-[node name="Room" parent="." index="0" instance=ExtResource("3_70edh")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
-
-[node name="HittableBox" parent="." index="1" instance=ExtResource("2_u3rbo")]
+[node name="HittableBox" parent="." index="0" instance=ExtResource("2_u3rbo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.734825, 6.24477)
 
-[node name="HittableBox2" parent="." index="2" instance=ExtResource("2_u3rbo")]
+[node name="HittableBox2" parent="." index="1" instance=ExtResource("2_u3rbo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.82683, -0.844635, 6.24477)
 
-[node name="HittableBox3" parent="." index="3" instance=ExtResource("2_u3rbo")]
+[node name="HittableBox3" parent="." index="2" instance=ExtResource("2_u3rbo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.76205, -0.711865, 6.24477)
+
+[node name="Room" parent="." index="3" instance=ExtResource("3_70edh")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)

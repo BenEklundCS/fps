@@ -1,0 +1,72 @@
+[gd_scene load_steps=8 format=3 uid="uid://c52knq57ga4a8"]
+
+[ext_resource type="Script" uid="uid://lyscy1ojs1b" path="res://addons/ExplosionVFX/explosion.gd" id="1_script"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_flash"]
+radius = 1.0
+height = 2.0
+radial_segments = 16
+rings = 8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_flash"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+albedo_color = Color(1, 1, 0.8, 1)
+disable_receive_shadows = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_core"]
+radius = 1.0
+height = 2.0
+radial_segments = 16
+rings = 8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_core"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+albedo_color = Color(1, 0.4, 0.1, 1)
+disable_receive_shadows = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_smoke"]
+radius = 1.0
+height = 2.0
+radial_segments = 12
+rings = 6
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_smoke"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.3, 0.25, 0.2, 0.6)
+disable_receive_shadows = true
+
+[node name="Explosion" type="Node3D"]
+script = ExtResource("1_script")
+
+[node name="ExplosionLight" type="OmniLight3D" parent="."]
+light_color = Color(1, 0.6, 0.2, 1)
+light_energy = 8.0
+omni_range = 15.0
+
+[node name="FlashSphere" type="MeshInstance3D" parent="."]
+extra_cull_margin = 99999.0
+custom_aabb = AABB(-1000, -1000, -1000, 2000, 2000, 2000)
+mesh = SubResource("SphereMesh_flash")
+surface_material_override/0 = SubResource("StandardMaterial3D_flash")
+
+[node name="CoreSphere" type="MeshInstance3D" parent="."]
+extra_cull_margin = 99999.0
+custom_aabb = AABB(-1000, -1000, -1000, 2000, 2000, 2000)
+mesh = SubResource("SphereMesh_core")
+surface_material_override/0 = SubResource("StandardMaterial3D_core")
+
+[node name="SmokeSphere" type="MeshInstance3D" parent="."]
+extra_cull_margin = 99999.0
+custom_aabb = AABB(-1000, -1000, -1000, 2000, 2000, 2000)
+mesh = SubResource("SphereMesh_smoke")
+surface_material_override/0 = SubResource("StandardMaterial3D_smoke")
+
+[node name="CleanupTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
