@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3]
+
+[ext_resource type="Shader" path="res://Shaders/texture_uniform.gdshader" id="1"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/Walls/wall_texture10.png" id="2"]
+
+[resource]
+shader = ExtResource("1")
+shader_parameter/texture_uniform = ExtResource("2")
+shader_parameter/tiling_factor = 3.0

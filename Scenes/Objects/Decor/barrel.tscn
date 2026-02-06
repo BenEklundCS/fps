@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://barrel_decor_001"]
+[gd_scene load_steps=3 format=3 uid="uid://bpdcmxt1bi642"]
 
-[ext_resource type="Texture2D" uid="uid://cwhevnqo7ow6v" path="res://Assets/Sprites/Items/item_barrel.png" id="1_barrel"]
+[ext_resource type="Texture2D" uid="uid://cqjluhnftwesq" path="res://Assets/Sprites/Items/item_barrel.png" id="1_barrel"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_1"]
 height = 1.0
@@ -11,9 +11,9 @@ radius = 0.4
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 pixel_size = 0.05
-billboard = 1
-texture_filter = 0
+billboard = 2
 alpha_cut = 1
+texture_filter = 0
 texture = ExtResource("1_barrel")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

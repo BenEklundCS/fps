@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 WeaponRegistry="*res://Scenes/Registry/weapon_registry.tscn"
 EffectProvider="*res://Scenes/Provider/effect_provider.tscn"
 EnemyAiRegistry="*res://Scenes/Registry/enemy_ai_registry.tscn"
+CyclopsAutoload="*res://addons/cyclops_level_builder/cyclops_global_scene.tscn"
 
 [dotnet]
 
@@ -27,7 +28,7 @@ project/assembly_name="Cosmic Doom"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/Basic FPS Player/plugin.cfg")
+enabled=PackedStringArray("res://addons/Basic FPS Player/plugin.cfg", "res://addons/cyclops_level_builder/plugin.cfg")
 
 [input]
 

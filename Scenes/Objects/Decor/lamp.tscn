@@ -1,15 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://lamp_decor_001"]
+[gd_scene load_steps=2 format=3 uid="uid://c7162diabe0kd"]
 
-[ext_resource type="Texture2D" uid="uid://ddw7cujyd3aht" path="res://Assets/Sprites/Items/item_lamp.png" id="1_lamp"]
+[ext_resource type="Texture2D" uid="uid://4vlv3bvbyxmc" path="res://Assets/Sprites/Items/item_lamp.png" id="1_lamp"]
 
 [node name="Lamp" type="Node3D"]
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
 pixel_size = 0.05
-billboard = 1
-texture_filter = 0
+billboard = 2
 alpha_cut = 1
+texture_filter = 0
 texture = ExtResource("1_lamp")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]

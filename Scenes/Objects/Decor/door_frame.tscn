@@ -1,11 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://doorframe_decor_001"]
+[gd_scene load_steps=3 format=3 uid="uid://bes8q7c3h6gqy"]
 
-[ext_resource type="Texture2D" uid="uid://bqmfqvnwb53u1" path="res://Assets/Sprites/Walls/wall_texture2.png" id="1_frame"]
+[ext_resource type="Texture2D" uid="uid://cva71p6x20kds" path="res://Assets/Sprites/Walls/wall_texture2.png" id="1_frame"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1"]
-texture_filter = 0
 albedo_texture = ExtResource("1_frame")
 uv1_scale = Vector3(2, 2, 2)
+texture_filter = 0
 
 [node name="DoorFrame" type="StaticBody3D"]
 
@@ -18,6 +18,6 @@ size = Vector3(2, 3, 0.5)
 material = SubResource("StandardMaterial3D_1")
 
 [node name="Opening" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 operation = 2
 size = Vector3(1.2, 2.2, 0.6)
