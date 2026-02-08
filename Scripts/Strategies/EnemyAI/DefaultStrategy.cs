@@ -1,4 +1,6 @@
-﻿namespace CosmicDoom.Scripts.Strategies.EnemyAI;
+﻿using System.Linq;
+
+namespace CosmicDoom.Scripts.Strategies.EnemyAI;
 
 using Godot;
 using Entities;
@@ -6,8 +8,12 @@ using Entities;
 public class DefaultStrategy : IEnemyAiStrategy {
     public void Execute(Enemy enemy, double delta) {
         var minDistance = float.MaxValue;
-        Player nearestPlayer = null;
-        FindNearestPlayer(enemy.GetTree().Root, enemy, ref minDistance, ref nearestPlayer);
+
+        var nearestPlayer = enemy
+            .GetTree()
+            .GetNodesInGroup("players")
+            .Cast<Player>()
+            .MinBy(player => enemy.GlobalPosition.DistanceTo(player.GlobalPosition));
 
         if (nearestPlayer != null) {
             var targetPos = nearestPlayer.GlobalPosition;
@@ -17,19 +23,6 @@ public class DefaultStrategy : IEnemyAiStrategy {
 
         if (enemy.CanAttack()) {
             enemy.Attack();
-        }
-    }
-
-    private static void FindNearestPlayer(Node node, Enemy enemy, ref float minDistance, ref Player nearestPlayer) {
-        if (node is Player player) {
-            var distance = enemy.GlobalPosition.DistanceTo(player.GlobalPosition);
-            if (distance < minDistance) {
-                minDistance = distance;
-                nearestPlayer = player;
-            }
-        }
-        foreach (var child in node.GetChildren()) {
-            FindNearestPlayer(child, enemy, ref minDistance, ref nearestPlayer);
         }
     }
 }

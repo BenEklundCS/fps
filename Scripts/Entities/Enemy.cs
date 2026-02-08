@@ -8,10 +8,6 @@ using Items;
 using Objects;
 using Registry;
 
-public enum EnemyType {
-    Destroyer
-}
-
 public partial class Enemy : Character, IEnemyControllable {
     [Export] public EnemyType Type;
     [Export] public float MoveRange = 500.0f;
@@ -26,12 +22,14 @@ public partial class Enemy : Character, IEnemyControllable {
     private int _flashedTimes = 0;
 
     public override void _Ready() {
-        _weaponData = WeaponRegistry.INSTANCE.Get(WeaponType.PlasmaGun);
+        var data = EnemyRegistry.INSTANCE.Get(Type);
+        _weaponData = WeaponRegistry.INSTANCE.Get(data.WeaponType);
         _weapon = GetNode<Weapon>("Weapon");
         _weapon.Equip(_weaponData);
         _navigationAgent = GetNode<NavigationAgent3D>("NavigationAgent3D");
         _cooldownTimer = GetNode<Timer>("CooldownTimer");
         _sprite = GetNode<Sprite3D>("Sprite3D");
+        _sprite.Texture = data.Sprite;
         _flashTimer = GetNode<Timer>("FlashTimer");
         _flashTimer.Timeout += OnFlashTimerTimeout;
         base._Ready();

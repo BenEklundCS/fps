@@ -14,7 +14,7 @@ public partial class AiController : Node {
 
     public override void _Ready() {
         _enemy = GetNode<Enemy>(Target);
-        _strategy = EnemyAiRegistry.INSTANCE.Get(_enemy.Type);
+        _strategy = EnemyRegistry.INSTANCE.Get(_enemy.Type).Strategy;
         _enemy.OnDeath += OnEnemyDeath;
     }
 

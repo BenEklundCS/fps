@@ -32,6 +32,7 @@ public partial class Player : Character, IControllable {
         _camera = GetNode<Camera3D>("Head/Camera3D");
         _healthLabel = GetNode<Label>("Label");
         ReadyWeapons();
+        AddToGroup("players");
         base._Ready();
     }
 

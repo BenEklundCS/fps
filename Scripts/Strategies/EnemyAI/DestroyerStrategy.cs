@@ -1,7 +1,7 @@
-﻿using CosmicDoom.Scripts.Entities;
-using Godot;
+﻿namespace CosmicDoom.Scripts.Strategies.EnemyAI;
 
-namespace CosmicDoom.Scripts.Strategies.EnemyAI;
+using Godot;
+using Entities;
 
 public class DestroyerStrategy : IEnemyAiStrategy {
     private float moveTimer = 5.0f;
