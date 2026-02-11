@@ -4,16 +4,17 @@ namespace CosmicDoom.Scripts.Strategies.EnemyAI;
 
 using Godot;
 using Entities;
+using Interfaces;
 
 public class DefaultStrategy : IEnemyAiStrategy {
-    public void Execute(Enemy enemy, double delta) {
-        var minDistance = float.MaxValue;
+    public void Execute(IEnemyControllable enemy, double delta) {
+        if (enemy is not Enemy node) return;
 
-        var nearestPlayer = enemy
+        var nearestPlayer = node
             .GetTree()
             .GetNodesInGroup("players")
             .Cast<Player>()
-            .MinBy(player => enemy.GlobalPosition.DistanceTo(player.GlobalPosition));
+            .MinBy(player => node.GlobalPosition.DistanceTo(player.GlobalPosition));
 
         if (nearestPlayer != null) {
             var targetPos = nearestPlayer.GlobalPosition;

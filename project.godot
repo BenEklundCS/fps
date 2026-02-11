@@ -21,11 +21,13 @@ WeaponRegistry="*res://Scenes/Registry/weapon_registry.tscn"
 EffectProvider="*res://Scenes/Provider/effect_provider.tscn"
 EnemyRegistry="*res://Scenes/Registry/enemy_registry.tscn"
 CyclopsAutoload="*res://addons/cyclops_level_builder/cyclops_global_scene.tscn"
+Utils="*res://Scenes/utils.tscn"
 
 [display]
 
-window/size/viewport_width=1920
-window/size/viewport_height=1080
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/size/resizable=true
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 

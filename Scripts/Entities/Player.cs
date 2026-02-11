@@ -8,6 +8,7 @@ using Items;
 using Registry;
 using Godot;
 using Objects;
+using UI;
 
 
 public partial class Player : Character, IControllable {
@@ -23,21 +24,25 @@ public partial class Player : Character, IControllable {
     private readonly float _maxPitch = Mathf.DegToRad(85f);
     private Camera3D _camera;
     private Weapon _weapon;
-    private Label _healthLabel;
+    private HealthBar _healthBar;
     
     [Export] public float MouseSensitivity = 0.005f;
 
     public override void _Ready() {
         _weapon = GetNode<Weapon>("Weapon");
         _camera = GetNode<Camera3D>("Head/Camera3D");
-        _healthLabel = GetNode<Label>("Label");
+        GetNode<Label>("Label").QueueFree();
+        _healthBar = new HealthBar();
+        AddChild(_healthBar);
         ReadyWeapons();
+        
         AddToGroup("players");
+        
         base._Ready();
     }
 
     public override void _Process(double delta) {
-        _healthLabel.Text = HEALTH.ToString();
+        _healthBar.SetHealth(HEALTH, 100);
         base._Process(delta);
     }
 
@@ -67,6 +72,11 @@ public partial class Player : Character, IControllable {
         Head.Rotation = new Vector3(clampedX, Head.Rotation.Y, Head.Rotation.Z);
     }
     
+    public override void Hit(int damage) {
+        _weapon.FlashIcon();
+        base.Hit(damage);
+    }
+
     public void Attack() {
         var weapon = _weaponWheel[_weaponIndex];
         RAttackContext context = new(

@@ -8,6 +8,7 @@ using Godot;
 using static Godot.GD;
 using Interfaces;
 using Items;
+using Components;
 using Context;
 
 public partial class Weapon : Node3D, IWeapon {
@@ -23,6 +24,8 @@ public partial class Weapon : Node3D, IWeapon {
     private Timer _reloadTimer;
     private Timer _onUseRectVisibilityTimer;
     private Label _ammoLabel;
+    private ColorRect _ammoBg;
+    private FlashRed _iconFlash;
     private bool _hasUi;
 
     public override void _Ready() {
@@ -40,10 +43,34 @@ public partial class Weapon : Node3D, IWeapon {
             _onUseRectVisibilityTimer = GetNode<Timer>("OnUseRectVisibilityTimer");
             _onUseRectVisibilityTimer.Timeout += () => { _onUseRect.Visible = false; };
             _ammoLabel = GetNode<Label>("UI/Ammo");
+            _ammoLabel.LabelSettings = new LabelSettings {
+                FontSize = 16,
+                OutlineSize = 3,
+                OutlineColor = Colors.Black
+            };
+            _ammoLabel.HorizontalAlignment = HorizontalAlignment.Center;
+            _ammoLabel.VerticalAlignment = VerticalAlignment.Center;
+
+            _ammoBg = new ColorRect();
+            _ammoBg.Color = new Color(0.1f, 0.1f, 0.1f, 0.7f);
+            _ammoBg.MouseFilter = Control.MouseFilterEnum.Ignore;
+            _ammoBg.AnchorTop = 1f;
+            _ammoBg.AnchorBottom = 1f;
+            _ammoBg.OffsetLeft = 20f;
+            _ammoBg.OffsetTop = _ammoLabel.OffsetTop;
+            _ammoBg.OffsetRight = 220f;
+            _ammoBg.OffsetBottom = _ammoLabel.OffsetTop + 24f;
+            ui.AddChild(_ammoBg);
+            ui.MoveChild(_ammoBg, _ammoLabel.GetIndex());
+            _iconFlash = GetNode<FlashRed>("UI/BoxContainer/WeaponIcon/FlashRed");
         } else {
             ui?.QueueFree();
             GetNodeOrNull<Timer>("OnUseRectVisibilityTimer")?.QueueFree();
         }
+    }
+
+    public void FlashIcon() {
+        _iconFlash?.Trigger();
     }
 
     public void Equip(RWeapon rWeapon) {
@@ -80,6 +107,10 @@ public partial class Weapon : Node3D, IWeapon {
             _reloadTimer.Start();
         }
         return false;
+    }
+
+    public bool OnCooldown() {
+        return !_cooldownTimer.IsStopped();
     }
     
     private void EnsureInitialized() {
@@ -158,6 +189,7 @@ public partial class Weapon : Node3D, IWeapon {
     private void UpdateAmmoLabel(Magazine mag, int magCount, bool visible) {
         if (!_hasUi) return;
         _ammoLabel.Visible = visible;
+        _ammoBg.Visible = visible;
         _ammoLabel.Text = $"{mag.Mag} / {magCount}";
     }
 

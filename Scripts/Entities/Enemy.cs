@@ -5,6 +5,7 @@ using static Godot.GD;
 using Context;
 using Interfaces;
 using Items;
+using Components;
 using Objects;
 using Registry;
 
@@ -13,8 +14,7 @@ public enum EnemyState { Idle, Walking, Attacking }
 public partial class Enemy : Character, IEnemyControllable {
     [Export] public EnemyType Type;
     [Export] public float MoveRange = 500.0f;
-    [Export] public Vector2 MoveThinkingTimeRange = new (3.0f, 8.0f);
-    [Export] public int FlashTimes = 3;
+    [Export] public Vector2 MoveThinkingTimeRange = new (1.0f, 5.0f);
     [Export] public float AttackDuration = 0.08f;
     [Export] public float BobAmplitude = 0.06f;
     [Export] public float BobFrequency = 10.0f;
@@ -24,9 +24,8 @@ public partial class Enemy : Character, IEnemyControllable {
     private Weapon _weapon;
     private NavigationAgent3D _navigationAgent;
     private AnimatedSprite3D _animatedSprite;
-    private Timer _flashTimer;
+    private FlashRed _flashRed;
     private Timer _attackTimer;
-    private int _flashedTimes = 0;
     private float _bobTime = 0.0f;
     private float _spriteBaseY;
     private EnemyState _state = EnemyState.Idle;
@@ -43,11 +42,12 @@ public partial class Enemy : Character, IEnemyControllable {
         _animatedSprite.SpriteFrames = data.SPRITE_FRAMES;
         _animatedSprite.Play("idle");
         _spriteBaseY = _animatedSprite.Position.Y;
-        _flashTimer = GetNode<Timer>("FlashTimer");
-        _flashTimer.Timeout += OnFlashTimerTimeout;
+        _flashRed = GetNode<FlashRed>("FlashRed");
         _attackTimer = GetNode<Timer>("AttackTimer");
         _attackTimer.SetWaitTime(AttackDuration);
         _attackTimer.Timeout += OnAttackTimerTimeout;
+        
+        AddToGroup("enemies");
 
         base._Ready();
     }
@@ -107,25 +107,12 @@ public partial class Enemy : Character, IEnemyControllable {
 
     public bool CanAttack() {
         var playerInLineOfSight = Ray.GetCollider() is Player;
-        return playerInLineOfSight;
+        return playerInLineOfSight && !_weapon.OnCooldown();
     }
 
     public override void Hit(int damage) {
-        _flashedTimes = 0;
-        if (_flashTimer.IsStopped()) {
-            _flashTimer.Start();
-        }
+        _flashRed.Trigger();
         base.Hit(damage);
-    }
-
-    private void OnFlashTimerTimeout() {
-        if (_flashedTimes == FlashTimes) {
-            _flashTimer.Stop();
-            _animatedSprite.Modulate = Colors.White;
-            return;
-        }
-        _flashedTimes += 1;
-        _animatedSprite.Modulate = _animatedSprite.Modulate == Colors.White ? Colors.Red : Colors.White;
     }
 
     private void OnAttackTimerTimeout() {

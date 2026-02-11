@@ -19,7 +19,7 @@ public class HitscanStrategy(
 
         for (int i = 0; i < shotCount; i++) {
             var projectile = _debugProjectile.Spawn();
-            var spreadQuaternion = Utils.GetSpreadQuaternion(spreadDegrees);
+            var spreadQuaternion = Utils.INSTANCE.GetSpreadQuaternion(spreadDegrees);
 
             ray.GlobalTransform = originalGlobalTransform;
             ray.GlobalBasis = new Basis(new Quaternion(ray.GlobalBasis) * spreadQuaternion);

@@ -1,3 +1,5 @@
+using CosmicDoom.Scripts.Strategies.EnemyAI.Actions.Destroyer;
+
 namespace CosmicDoom.Scripts.Registry;
 
 using Godot;
@@ -13,7 +15,11 @@ public partial class EnemyRegistry : Node, IRegistry<EnemyType, REnemy> {
         [EnemyType.Destroyer] = new REnemy(
             EnemyType.Destroyer,
             GetSpriteFrames(EnemyType.Destroyer),
-            new DestroyerStrategy(),
+            new UtilityAiStrategy( new IAction[]{
+                    new DestroyerActionMove(),
+                    new DestroyerActionAttack(),
+                }
+            ),
             WeaponType.PlasmaGun
         )
     };

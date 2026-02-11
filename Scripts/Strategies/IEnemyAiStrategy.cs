@@ -1,7 +1,7 @@
 ﻿namespace CosmicDoom.Scripts.Strategies;
 
-using Entities;
+using Interfaces;
 
 public interface IEnemyAiStrategy {
-    public void Execute(Enemy enemy, double delta);
+    public void Execute(IEnemyControllable enemy, double delta);
 }

@@ -27,10 +27,10 @@ public partial class CeilingLight : Node3D {
 
         var energy = LightEnergy;
         if (InstabilityEnabled) {
-            energy *= Utils.NextFloat(InstabilityRange);
+            energy *= Utils.INSTANCE.NextFloat(InstabilityRange);
         }
         
-        _flickerTimer.SetWaitTime(Utils.NextFloat(_on ? OnDurationRange : OffDurationRange));
+        _flickerTimer.SetWaitTime(Utils.INSTANCE.NextFloat(_on ? OnDurationRange : OffDurationRange));
         _light.LightEnergy = _on ? energy : 0.0f;
         _flickerTimer.Start();
     }

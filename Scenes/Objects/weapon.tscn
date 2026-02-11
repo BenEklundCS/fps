@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bajkuqwah0f4a"]
+[gd_scene load_steps=5 format=3 uid="uid://bajkuqwah0f4a"]
 
 [ext_resource type="Script" uid="uid://boyomhck8a6ip" path="res://Scripts/Objects/Weapon.cs" id="1_58sax"]
 [ext_resource type="Texture2D" uid="uid://b2odtl4dp65dp" path="res://Assets/Sprites/Effects/effect_fireball.png" id="2_4mp76"]
+[ext_resource type="PackedScene" path="res://Scenes/Components/flash_red.tscn" id="3_flash"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_4mp76"]
 outline_size = 2
@@ -60,11 +61,15 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -23.0
-offset_right = 40.0
+offset_left = 20.0
+offset_top = -55.0
+offset_right = 220.0
+offset_bottom = -31.0
 grow_vertical = 0
 text = "100 / 10"
 label_settings = SubResource("LabelSettings_4mp76")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="BoxContainer" type="BoxContainer" parent="UI"]
 layout_mode = 1
@@ -83,6 +88,9 @@ layout_mode = 2
 size_flags_horizontal = 3
 expand_mode = 1
 stretch_mode = 5
+
+[node name="FlashRed" parent="UI/BoxContainer/WeaponIcon" instance=ExtResource("3_flash")]
+Target = NodePath("../../../WeaponTexture")
 
 [node name="OnUseRectVisibilityTimer" type="Timer" parent="."]
 wait_time = 0.1
