@@ -12,7 +12,7 @@ public partial class EnemyRegistry : Node, IRegistry<EnemyType, REnemy> {
     private readonly Dictionary<EnemyType, REnemy> _registry = new() {
         [EnemyType.Destroyer] = new REnemy(
             EnemyType.Destroyer,
-            Load<CompressedTexture2D>("res://Assets/Sprites/Monsters/monster_destroyer_idle.png"),
+            GetSpriteFrames(EnemyType.Destroyer),
             new DestroyerStrategy(),
             WeaponType.PlasmaGun
         )
@@ -30,5 +30,22 @@ public partial class EnemyRegistry : Node, IRegistry<EnemyType, REnemy> {
 
     public override void _Ready() {
         INSTANCE = this;
+    }
+
+    private static SpriteFrames GetSpriteFrames(EnemyType enemyType) {
+        var spriteFrames = new SpriteFrames();
+        spriteFrames.RemoveAnimation("default");
+        spriteFrames.AddAnimation("idle");
+        spriteFrames.AddAnimation("walk");
+        spriteFrames.AddAnimation("attack");
+
+        var enemyName = enemyType.ToString().ToLower();
+
+        foreach (var animationName in spriteFrames.GetAnimationNames()) {
+            var path = $"res://Assets/Sprites/Monsters/monster_{enemyName}_{animationName}.png";
+            spriteFrames.AddFrame(animationName, Load<Texture2D>(path));
+        }
+
+        return spriteFrames;
     }
 }

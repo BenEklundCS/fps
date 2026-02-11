@@ -8,8 +8,8 @@ public enum EnemyType {
 }
 
 public record REnemy(
-    EnemyType Type,
-    CompressedTexture2D Sprite,
-    IEnemyAiStrategy Strategy,
-    WeaponType WeaponType
+    EnemyType TYPE,
+    SpriteFrames SPRITE_FRAMES,
+    IEnemyAiStrategy STRATEGY,
+    WeaponType WEAPON_TYPE
 );

@@ -60,7 +60,7 @@ public partial class Weapon : Node3D, IWeapon {
         UpdateCooldown();
     }
 
-    public void Use(RAttackContext context) {
+    public bool Use(RAttackContext context) {
         var ammo = GetAmmo();
 
         if (ammo > 0) {
@@ -72,12 +72,14 @@ public partial class Weapon : Node3D, IWeapon {
                     _onUseRect.Visible = true;
                 }
                 UpdateCurrentMagazine(true);
+                return true;
             }
         }
         else if (_reloadTimer.IsStopped() && _rWeapon.RELOAD_ENABLED) {
             Print("Reloading!");
             _reloadTimer.Start();
         }
+        return false;
     }
     
     private void EnsureInitialized() {

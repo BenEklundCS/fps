@@ -4,7 +4,7 @@ namespace CosmicDoom.Scripts;
 using Godot;
 using static Godot.GD;
 
-public class Utils {
+public partial class Utils : Node3D {
     private static Random _random = new ();
     
     public static Quaternion GetSpreadQuaternion(float spreadDegrees) {
@@ -18,4 +18,6 @@ public class Utils {
     {
         return range.X + (float)(_random.NextDouble() * (range.Y - range.X));
     }
+    
+    
 }

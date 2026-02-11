@@ -1,21 +1,25 @@
-﻿namespace CosmicDoom.Scripts.Strategies.EnemyAI;
+﻿using System.Linq;
+
+namespace CosmicDoom.Scripts.Strategies.EnemyAI;
 
 using Godot;
 using Entities;
 
 public class DestroyerStrategy : IEnemyAiStrategy {
-    private float moveTimer = 5.0f;
+    private float _moveTimer = 5.0f;
     public void Execute(Enemy enemy, double delta) {
-        moveTimer -= (float)delta;
+        _moveTimer -= (float)delta;
         
-        var minDistance = float.MaxValue;
-        Player nearestPlayer = null;
-        FindNearestPlayer(enemy.GetTree().Root, enemy, ref minDistance, ref nearestPlayer);
+        var nearestPlayer = enemy
+            .GetTree()
+            .GetNodesInGroup("players")
+            .Cast<Player>()
+            .MinBy(player => enemy.GlobalPosition.DistanceTo(player.GlobalPosition));
 
-        if (moveTimer <= 0.0f) {
+        if (_moveTimer <= 0.0f) {
             var moveTargetPos = GetRandomPosition(enemy);
             enemy.MoveTo(moveTargetPos);
-            moveTimer = Utils.NextFloat(enemy.MoveThinkingTimeRange);
+            _moveTimer = Utils.NextFloat(enemy.MoveThinkingTimeRange);
         }
 
         if (nearestPlayer != null) {
@@ -25,19 +29,6 @@ public class DestroyerStrategy : IEnemyAiStrategy {
 
         if (enemy.CanAttack()) {
             enemy.Attack();
-        }
-    }
-
-    private static void FindNearestPlayer(Node node, Enemy enemy, ref float minDistance, ref Player nearestPlayer) {
-        if (node is Player player) {
-            var distance = enemy.GlobalPosition.DistanceTo(player.GlobalPosition);
-            if (distance < minDistance) {
-                minDistance = distance;
-                nearestPlayer = player;
-            }
-        }
-        foreach (var child in node.GetChildren()) {
-            FindNearestPlayer(child, enemy, ref minDistance, ref nearestPlayer);
         }
     }
 

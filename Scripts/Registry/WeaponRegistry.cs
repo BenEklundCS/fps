@@ -65,7 +65,7 @@ public partial class WeaponRegistry : Node, IRegistry<WeaponType, RWeapon> {
             Load<CompressedTexture2D>("res://Assets/Sprites/Effects/effect_fireball.png"),
             Load<CompressedTexture2D>("res://Assets/Sprites/Icons/rocket_launcher_icon_1.png"),
             [],
-            new ProjectileStrategy(projectile: new Rocket(), projectileVelocity: 10f)
+            new ProjectileStrategy(projectile: new Rocket(), projectileVelocity: 20f)
         ),
         [WeaponType.Shotgun] = new RWeapon(
             WeaponType.Shotgun,

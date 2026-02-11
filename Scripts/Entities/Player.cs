@@ -67,7 +67,7 @@ public partial class Player : Character, IControllable {
         Head.Rotation = new Vector3(clampedX, Head.Rotation.Y, Head.Rotation.Z);
     }
     
-    public new void Attack() {
+    public void Attack() {
         var weapon = _weaponWheel[_weaponIndex];
         RAttackContext context = new(
             -Head.GlobalBasis.Z, 

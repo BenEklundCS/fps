@@ -1,38 +1,35 @@
-[gd_scene load_steps=7 format=3 uid="uid://cqc52y3m8xp1"]
+[gd_scene load_steps=6 format=3 uid="uid://cqc52y3m8xp1"]
 
 [ext_resource type="PackedScene" uid="uid://cvmlwrfowfoo3" path="res://Scenes/Entities/character.tscn" id="1_o6kgl"]
 [ext_resource type="Script" uid="uid://c1k48h1api7tr" path="res://Scripts/Entities/Enemy.cs" id="2_ge2ll"]
-[ext_resource type="Texture2D" uid="uid://6sqf6ifyo3fe" path="res://Assets/Sprites/Monsters/monster_destroyer_idle.png" id="3_ge2ll"]
 [ext_resource type="PackedScene" uid="uid://bajkuqwah0f4a" path="res://Scenes/Objects/weapon.tscn" id="4_ygq1y"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ge2ll"]
-atlas = ExtResource("3_ge2ll")
-region = Rect2(0, 0.351685, 32.6127, 31.6483)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ge2ll"]
 radius = 0.218217
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ygq1y"]
 
 [node name="Enemy" instance=ExtResource("1_o6kgl")]
 script = ExtResource("2_ge2ll")
 HEALTH = 10
 
-[node name="Sprite3D" type="Sprite3D" parent="." index="1"]
-transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -0.000751138, 1.14809, -0.000844598)
-billboard = 2
-render_priority = 1
-texture = SubResource("AtlasTexture_ge2ll")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
 transform = Transform3D(3.4858, -0.0306287, 0, 0.0925574, 1.1535, 0, 0, 0, 3.57844, 0, 1.1896, 0)
 shape = SubResource("CapsuleShape3D_ge2ll")
 
-[node name="Weapon" parent="." index="3" instance=ExtResource("4_ygq1y")]
+[node name="Weapon" parent="." index="2" instance=ExtResource("4_ygq1y")]
 
-[node name="CooldownTimer" type="Timer" parent="." index="4"]
-one_shot = true
-
-[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." index="5"]
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." index="3"]
 debug_enabled = true
 
-[node name="FlashTimer" type="Timer" parent="." index="6"]
+[node name="FlashTimer" type="Timer" parent="." index="4"]
 wait_time = 0.1
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." index="5"]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -0.000751138, 1.14809, -0.000844598)
+billboard = 2
+render_priority = 1
+sprite_frames = SubResource("SpriteFrames_ygq1y")
+
+[node name="AttackTimer" type="Timer" parent="." index="6"]
+one_shot = true
