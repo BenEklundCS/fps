@@ -5,8 +5,8 @@
 [ext_resource type="PackedScene" path="res://Scenes/Components/flash_red.tscn" id="3_flash"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_4mp76"]
-outline_size = 2
-outline_color = Color(0.884314, 3.20069e-06, 1.15514e-06, 1)
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
 
 [node name="Weapon" type="Node3D"]
 script = ExtResource("1_58sax")

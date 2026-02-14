@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading;
 using CosmicDoom.Scripts.Entities;
+using CosmicDoom.Scripts.Registry;
 
 namespace CosmicDoom.Scripts.Objects;
 
@@ -43,14 +44,6 @@ public partial class Weapon : Node3D, IWeapon {
             _onUseRectVisibilityTimer = GetNode<Timer>("OnUseRectVisibilityTimer");
             _onUseRectVisibilityTimer.Timeout += () => { _onUseRect.Visible = false; };
             _ammoLabel = GetNode<Label>("UI/Ammo");
-            _ammoLabel.LabelSettings = new LabelSettings {
-                FontSize = 16,
-                OutlineSize = 3,
-                OutlineColor = Colors.Black
-            };
-            _ammoLabel.HorizontalAlignment = HorizontalAlignment.Center;
-            _ammoLabel.VerticalAlignment = VerticalAlignment.Center;
-
             _ammoBg = GetNode<ColorRect>("UI/AmmoBg");
             _iconFlash = GetNode<FlashRed>("UI/BoxContainer/WeaponIcon/FlashRed");
         } else {
@@ -103,10 +96,14 @@ public partial class Weapon : Node3D, IWeapon {
         return !_cooldownTimer.IsStopped();
     }
     
-    private void EnsureInitialized() {
-        if (!_magazineFeeds.ContainsKey(_rWeapon.TYPE) && _rWeapon.AMMO > 0) {
-            _magazineFeeds[_rWeapon.TYPE] = new MagazineFeed(_rWeapon.AMMO, _rWeapon.MAX_AMMO);
+    public void InitializeFeed(RWeapon rWeapon) {
+        if (!_magazineFeeds.ContainsKey(rWeapon.TYPE) && rWeapon.AMMO > 0) {
+            _magazineFeeds[rWeapon.TYPE] = new MagazineFeed(rWeapon.AMMO, rWeapon.MAX_AMMO);
         }
+    }
+
+    private void EnsureInitialized() {
+        InitializeFeed(_rWeapon);
 
         if (!_audioStreamRandomizers.ContainsKey(_rWeapon.TYPE)) {
             InitializeAudio();
@@ -121,6 +118,15 @@ public partial class Weapon : Node3D, IWeapon {
             randomizer.AddStream(i, _rWeapon.AUDIO_STREAMS[i]);
         }
         _audioStreamRandomizers[_rWeapon.TYPE] = randomizer;
+    }
+
+    public void PickupAmmo(Pickup pickup) {
+        foreach (var (weaponType, feed) in _magazineFeeds) {                                                                                                                                                                          
+            if (WeaponRegistry.INSTANCE.Get(weaponType).AMMO_TYPE == pickup.Type) {
+                feed.RefillReserve();
+            }
+        }
+        UpdateCurrentMagazine(false);
     }
     
     private void Reload() {

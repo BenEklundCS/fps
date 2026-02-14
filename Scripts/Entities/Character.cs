@@ -13,19 +13,18 @@ public abstract partial class Character : CharacterBody3D, IHittable {
     
     [Export] public float JumpSpeed = 5.0f;
     [Export] public float Speed = 5.0f;
-    [Export] public int HEALTH { get; private set; } = 100;
+    [Export] public int MAX_HEALTH { get; private set; } = 100;
+    [Export] public int HEALTH { get; protected set; }
     [Export] public int DAMAGE { get; private set; } = 10;
     
     protected CollisionShape3D CollisionShape;
     protected Node3D Head;
     protected RayCast3D Ray;
     
-    private float _gravity;
-
     public virtual void Hit(int damage) {
         HEALTH -= damage;
         if (!(HEALTH <= 0)) return;
-        
+
         Print($"{Name} died.");
         EmitSignalOnDeath();
         Callable.From(() => {
@@ -37,21 +36,7 @@ public abstract partial class Character : CharacterBody3D, IHittable {
         Head = GetNode<Node3D>("Head");
         Ray = GetNode<RayCast3D>("Head/RayCast3D");
         CollisionShape = GetNode<CollisionShape3D>("CollisionShape3D");
-        _gravity = (float)ProjectSettings.GetSetting("physics/3d/default_gravity");
+        HEALTH = MAX_HEALTH;
         base._Ready();
-    }
-
-    public override void _PhysicsProcess(double delta) {
-        Move(delta);
-        base._PhysicsProcess(delta);
-    }
-
-    private void Move(double delta) {
-        Velocity = new Vector3(
-            Velocity.X,
-            Velocity.Y - _gravity * (float)delta,
-            Velocity.Z
-        );
-        MoveAndSlide();
     }
 }

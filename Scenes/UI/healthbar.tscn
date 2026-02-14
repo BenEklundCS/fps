@@ -1,17 +1,46 @@
-[gd_scene load_steps=2 format=3 uid="uid://bhtgn08xi3ek0"]
+[gd_scene load_steps=3 format=3 uid="uid://bhtgn08xi3ek0"]
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_is08s"]
+[ext_resource type="Script" uid="uid://dltfmeex1a3ty" path="res://Scripts/UI/HealthBar.cs" id="1_hb"]
 
-[node name="Control" type="Control"]
+[sub_resource type="LabelSettings" id="LabelSettings_hb"]
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
+[node name="HealthBar" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_hb")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Background" type="ColorRect" parent="."]
 layout_mode = 0
-offset_right = 289.0
-offset_bottom = 38.0
-texture = SubResource("CanvasTexture_is08s")
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 220.0
+offset_bottom = 44.0
+mouse_filter = 2
+color = Color(0.1, 0.1, 0.1, 0.7)
+
+[node name="Fill" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 220.0
+offset_bottom = 44.0
+mouse_filter = 2
+color = Color(0, 1, 0, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 220.0
+offset_bottom = 44.0
+mouse_filter = 2
+label_settings = SubResource("LabelSettings_hb")
+horizontal_alignment = 1
+vertical_alignment = 1

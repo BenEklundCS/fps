@@ -1,12 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://dif7wvkvbhwlv"]
+[gd_scene load_steps=8 format=3 uid="uid://dif7wvkvbhwlv"]
 
 [ext_resource type="PackedScene" uid="uid://cvmlwrfowfoo3" path="res://Scenes/Entities/character.tscn" id="1_cvnsp"]
 [ext_resource type="Script" uid="uid://b3g840rg73343" path="res://Scripts/Entities/Player.cs" id="2_cvnsp"]
-[ext_resource type="PackedScene" uid="uid://bajkuqwah0f4a" path="res://Scenes/Objects/Weapon.tscn" id="4_svftf"]
+[ext_resource type="PackedScene" uid="uid://bajkuqwah0f4a" path="res://Scenes/Objects/weapon.tscn" id="4_svftf"]
 [ext_resource type="PackedScene" uid="uid://cwqhywgy3s1l1" path="res://Scenes/Components/controller.tscn" id="5_ctrl"]
+[ext_resource type="PackedScene" uid="uid://bhtgn08xi3ek0" path="res://Scenes/UI/healthbar.tscn" id="6_hbar"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1f0kj"]
-radius = 0.218217
+radius = 0.353765
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_svftf"]
+radius = 0.643886
 
 [node name="Player" instance=ExtResource("1_cvnsp")]
 script = ExtResource("2_cvnsp")
@@ -21,8 +25,13 @@ shape = SubResource("CapsuleShape3D_1f0kj")
 [node name="Weapon" parent="." index="2" instance=ExtResource("4_svftf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.29647, 0)
 
-[node name="Label" type="Label" parent="." index="3"]
-offset_right = 279.0
-offset_bottom = 61.0
+[node name="Controller" parent="." index="3" instance=ExtResource("5_ctrl")]
 
-[node name="Controller" parent="." index="4" instance=ExtResource("5_ctrl")]
+[node name="HealthBar" parent="." index="5" instance=ExtResource("6_hbar")]
+
+[node name="PickupArea" type="Area3D" parent="." index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.327051, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PickupArea" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.272519, 0)
+shape = SubResource("SphereShape3D_svftf")

@@ -53,7 +53,7 @@ public partial class EnemyRegistry : Node, IRegistry<EnemyType, REnemy> {
 
         foreach (var animationName in spriteFrames.GetAnimationNames()) {
             var path = $"res://Assets/Sprites/Monsters/monster_{enemyName}_{animationName}.png";
-            spriteFrames.AddFrame(animationName, Load<Texture2D>(path));
+            spriteFrames.AddFrame(animationName, Utils.LoadTrimmed(path));
         }
 
         return spriteFrames;

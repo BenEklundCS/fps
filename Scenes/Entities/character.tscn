@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://cvmlwrfowfoo3"]
+[gd_scene load_steps=2 format=3 uid="uid://cvmlwrfowfoo3"]
+
+[ext_resource type="PackedScene" path="res://Scenes/Components/gravity_component.tscn" id="1_grav"]
 
 [node name="Character" type="CharacterBody3D"]
 
@@ -7,3 +9,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
 
 [node name="RayCast3D" type="RayCast3D" parent="Head"]
 target_position = Vector3(0, 0, -1000)
+
+[node name="GravityComponent" parent="." instance=ExtResource("1_grav")]

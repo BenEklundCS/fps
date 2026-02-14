@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dj8wlp3qj2gra"]
+
+[ext_resource type="Script" uid="uid://cd54ylf7geio8" path="res://Scripts/Objects/Pickup.cs" id="1_pjfvu"]
+[ext_resource type="PackedScene" path="res://Scenes/Components/gravity_component.tscn" id="2_grav"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pjfvu"]
+
+[node name="Pickup" type="CharacterBody3D"]
+script = ExtResource("1_pjfvu")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+billboard = 2
+alpha_cut = 1
+texture_filter = 0
+render_priority = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_pjfvu")
+
+[node name="GravityComponent" parent="." instance=ExtResource("2_grav")]

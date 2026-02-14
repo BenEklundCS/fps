@@ -25,15 +25,17 @@ public partial class Player : Character, IControllable {
     private Camera3D _camera;
     private Weapon _weapon;
     private HealthBar _healthBar;
+    private Area3D _pickupArea;
     
     [Export] public float MouseSensitivity = 0.005f;
 
     public override void _Ready() {
         _weapon = GetNode<Weapon>("Weapon");
         _camera = GetNode<Camera3D>("Head/Camera3D");
-        GetNode<Label>("Label").QueueFree();
-        _healthBar = new HealthBar();
-        AddChild(_healthBar);
+        _healthBar = GetNode<HealthBar>("HealthBar");
+        _pickupArea = GetNode<Area3D>("PickupArea");
+        _pickupArea.BodyEntered += OnBodyEnteredPickupArea;
+        
         ReadyWeapons();
         
         AddToGroup("players");
@@ -104,7 +106,41 @@ public partial class Player : Character, IControllable {
     }
     
     private void ReadyWeapons() {
-        foreach (var weaponType in _defaultWeapons) _weaponWheel.Add(WeaponRegistry.INSTANCE.Get(weaponType));
+        foreach (var weaponType in _defaultWeapons) {
+            var rWeapon = WeaponRegistry.INSTANCE.Get(weaponType);
+            _weaponWheel.Add(rWeapon);
+            _weapon.InitializeFeed(rWeapon);
+        }
         EquipWeapon(_weaponIndex);
+    }
+
+    private void OnBodyEnteredPickupArea(Node3D body) {
+        if (body is not Pickup pickup) return;
+
+        switch (pickup.Category) {
+            case PickupCategory.Ammo: {
+                _weapon.PickupAmmo(pickup);
+                break;
+            }
+            case PickupCategory.Life: {
+                PickupLife(pickup);
+                break;
+            }
+            default:
+                break;
+        }
+
+        pickup.QueueFree();
+    }
+
+    private void PickupLife(Pickup pickup) {
+        switch (pickup.Type) {
+            case PickupType.Health: {
+                HEALTH = MAX_HEALTH;
+                break;
+            }
+            default:
+                break;
+        }
     }
 }

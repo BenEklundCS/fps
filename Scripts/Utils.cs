@@ -1,9 +1,9 @@
 ﻿using System;
+using Godot;
 using Godot.Collections;
 
 namespace CosmicDoom.Scripts;
-using Godot;
-using static Godot.GD;
+using static GD;
 
 public partial class Utils : Node3D {
     private static Random _random = new ();
@@ -11,6 +11,14 @@ public partial class Utils : Node3D {
 
     public override void _Ready() {
         INSTANCE = this;
+    }
+
+    public static AtlasTexture LoadTrimmed(string path, int trimTop = 2) {
+        var source = Load<Texture2D>(path);
+        return new AtlasTexture {
+            Atlas = source,
+            Region = new Rect2(0, trimTop, source.GetWidth(), source.GetHeight() - trimTop)
+        };
     }
 
     public Quaternion GetSpreadQuaternion(float spreadDegrees) {

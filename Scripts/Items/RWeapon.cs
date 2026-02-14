@@ -16,14 +16,15 @@ public enum WeaponType {
 
 public record RWeapon(
     WeaponType TYPE,
+    PickupType AMMO_TYPE,
     int DAMAGE,
     bool RELOAD_ENABLED,
     int AMMO,
     int MAX_AMMO,
     float COOLDOWN,
-    CompressedTexture2D TEXTURE,
-    CompressedTexture2D ON_USE_TEXTURE,
-    CompressedTexture2D ICON,
+    AtlasTexture TEXTURE,
+    AtlasTexture ON_USE_TEXTURE,
+    AtlasTexture ICON,
     AudioStreamWav[] AUDIO_STREAMS,
     IWeaponStrategy STRATEGY,
     Vector3? SHOT_OFFSET = null

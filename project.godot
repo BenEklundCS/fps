@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 WeaponRegistry="*res://Scenes/Registry/weapon_registry.tscn"
 EffectProvider="*res://Scenes/Provider/effect_provider.tscn"
 EnemyRegistry="*res://Scenes/Registry/enemy_registry.tscn"
+PickupRegistry="*res://Scenes/Registry/pickup_registry.tscn"
 CyclopsAutoload="*res://addons/cyclops_level_builder/cyclops_global_scene.tscn"
 Utils="*res://Scenes/utils.tscn"
 
