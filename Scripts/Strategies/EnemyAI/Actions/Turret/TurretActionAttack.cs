@@ -3,7 +3,7 @@ using CosmicDoom.Scripts.Interfaces;
 
 using static Godot.GD;
 
-namespace CosmicDoom.Scripts.Strategies.EnemyAI.Actions.Destroyer;
+namespace CosmicDoom.Scripts.Strategies.EnemyAI.Actions.Turret;
 
 public class TurretActionAttack : IAction {
     public float Score(IEnemyControllable enemy) {

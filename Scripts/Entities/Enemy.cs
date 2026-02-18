@@ -13,6 +13,8 @@ public enum EnemyState { Idle, Walking, Attacking }
 
 public partial class Enemy : Character, IEnemyControllable {
     [Signal] public delegate void TargetReachedEventHandler();
+
+    [Export] public bool Enabled = true;
     [Export] public EnemyType Type;
     [Export] public float MoveRange = 500.0f;
     [Export] public Vector2 MoveThinkingTimeRange = new (1.0f, 5.0f);
@@ -68,18 +70,7 @@ public partial class Enemy : Character, IEnemyControllable {
         var direction = (nextPosition - GlobalPosition).Normalized();
         Velocity = new Vector3(direction.X * Speed, Velocity.Y, direction.Z * Speed);
 
-        if (_state == EnemyState.Walking) {
-            _bobTime += (float)delta;
-            var bobOffset = Mathf.Sin(_bobTime * BobFrequency) * BobAmplitude;
-            var spritePos = _animatedSprite.Position;
-            spritePos.Y = _spriteBaseY + bobOffset;
-            _animatedSprite.Position = spritePos;
-        } else {
-            _bobTime = 0.0f;
-            var pos = _animatedSprite.Position;
-            pos.Y = _spriteBaseY;
-            _animatedSprite.Position = pos;
-        }
+        HandleBob(delta);
         
         base._PhysicsProcess(delta);
     }
@@ -136,5 +127,20 @@ public partial class Enemy : Character, IEnemyControllable {
             EnemyState.Attacking => "attack",
             _ => "idle"
         });
+    }
+
+    private void HandleBob(double delta) {
+        if (_state == EnemyState.Walking) {
+            _bobTime += (float)delta;
+            var bobOffset = Mathf.Sin(_bobTime * BobFrequency) * BobAmplitude;
+            var spritePos = _animatedSprite.Position;
+            spritePos.Y = _spriteBaseY + bobOffset;
+            _animatedSprite.Position = spritePos;
+        } else {
+            _bobTime = 0.0f;
+            var pos = _animatedSprite.Position;
+            pos.Y = _spriteBaseY;
+            _animatedSprite.Position = pos;
+        }
     }
 }

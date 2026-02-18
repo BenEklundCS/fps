@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://t5vyclegttms"]
+[gd_scene load_steps=6 format=3 uid="uid://t5vyclegttms"]
 
 [ext_resource type="Script" uid="uid://csbrlwrxv12c1" path="res://Scripts/Root.cs" id="1_8pvmw"]
 [ext_resource type="PackedScene" uid="uid://bhdhjpb222xe2" path="res://Scenes/debug.tscn" id="3_vnucn"]
 [ext_resource type="PackedScene" uid="uid://dif7wvkvbhwlv" path="res://Scenes/Entities/player.tscn" id="5_4g5cr"]
+[ext_resource type="PackedScene" uid="uid://bx1pswqjf1ut" path="res://Scenes/Objects/triggerable_door.tscn" id="5_ckhy6"]
 [ext_resource type="PackedScene" uid="uid://bhq5qufg4vqxu" path="res://Scenes/Levels/level_one.tscn" id="7_dun2r"]
 
 [node name="Root" type="Node3D"]
@@ -19,3 +20,6 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.133
 [node name="RespawnTimer" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true
+
+[node name="TriggerableDoor" parent="." instance=ExtResource("5_ckhy6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00221252, 1.66222, 5.14076)

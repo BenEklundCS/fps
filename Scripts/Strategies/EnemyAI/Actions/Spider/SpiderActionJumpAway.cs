@@ -2,7 +2,7 @@
 using CosmicDoom.Scripts.Interfaces;
 using Godot;
 
-namespace CosmicDoom.Scripts.Strategies.EnemyAI.Actions.Destroyer;
+namespace CosmicDoom.Scripts.Strategies.EnemyAI.Actions.Spider;
 //TODO:: Jump away logic
 public class SpiderActionJumpAway : IAction {
     private bool _inPanic = false;

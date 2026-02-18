@@ -18,6 +18,7 @@ public partial class AiController : Node {
 
     public override void _PhysicsProcess(double delta) {
         if (_enemy == null) return;
+        if (!_enemy.Enabled) return;
         _strategy?.Execute(_enemy, delta);
     }
 

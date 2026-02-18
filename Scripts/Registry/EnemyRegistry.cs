@@ -1,5 +1,11 @@
 using CosmicDoom.Scripts.Strategies.EnemyAI.Actions;
 using CosmicDoom.Scripts.Strategies.EnemyAI.Actions.Destroyer;
+using CosmicDoom.Scripts.Strategies.EnemyAI.Actions.Ender;
+using CosmicDoom.Scripts.Strategies.EnemyAI.Actions.Exploder;
+using CosmicDoom.Scripts.Strategies.EnemyAI.Actions.PlasmaBot;
+using CosmicDoom.Scripts.Strategies.EnemyAI.Actions.Spider;
+using CosmicDoom.Scripts.Strategies.EnemyAI.Actions.Turret;
+using CosmicDoom.Scripts.Strategies.EnemyAI.Actions.Warrior;
 
 namespace CosmicDoom.Scripts.Registry;
 

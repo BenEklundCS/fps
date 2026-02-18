@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-namespace CosmicDoom.Scripts.Strategies.EnemyAI.Actions.Destroyer;
+namespace CosmicDoom.Scripts.Strategies.EnemyAI.Actions.Ender;
 
 using Godot;
 

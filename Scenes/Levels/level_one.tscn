@@ -6634,19 +6634,41 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.5014, -0.484409, -1.58691)
 
 [node name="Enemy" parent="." instance=ExtResource("21_diuf7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.7856, -0.312744, 6.55795)
+Enabled = false
 Type = 3
 HEALTH = 0
 
 [node name="Enemy2" parent="." instance=ExtResource("21_diuf7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.7063, -0.312744, 16.3581)
+Enabled = false
 Type = 4
 HEALTH = 0
 
 [node name="Enemy3" parent="." instance=ExtResource("21_diuf7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.6593, -0.312744, 0.305391)
+Enabled = false
 Type = 5
 HEALTH = 0
 
 [node name="Pickup" parent="." instance=ExtResource("22_krgkk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.4772, 0.847044, 8.24837)
 Type = 4
+
+[node name="Enemy4" parent="." instance=ExtResource("21_diuf7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.9587, 0, 7.48072)
+Enabled = false
+
+[node name="Enemy5" parent="." instance=ExtResource("21_diuf7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.9587, 0, 12.263)
+Enabled = false
+Type = 1
+
+[node name="Enemy6" parent="." instance=ExtResource("21_diuf7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.9587, 0, 12.263)
+Enabled = false
+Type = 2
+
+[node name="Enemy7" parent="." instance=ExtResource("21_diuf7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.9587, 0, 12.263)
+Enabled = false
+Type = 6
