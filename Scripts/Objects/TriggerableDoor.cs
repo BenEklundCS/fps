@@ -1,7 +1,6 @@
 using Godot;
 using System;
 
-[Tool]
 public partial class TriggerableDoor : Node3D {
     [Export] public float MoveDistance = 2.1f;
     [Export] public float MoveDuration = 1.0f;
@@ -16,7 +15,6 @@ public partial class TriggerableDoor : Node3D {
         _mesh = GetNode<MeshInstance3D>("MeshInstance3D");
         _meshStart = _mesh.GlobalPosition;
         _meshEnd = new Vector3(_meshStart.X, _meshStart.Y + MoveDistance, _meshStart.Z);
-        SetDoorOpen(true);
     }
 
     public void SetDoorOpen(bool open) {

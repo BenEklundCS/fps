@@ -81,9 +81,7 @@ public partial class Enemy : Character, IEnemyControllable {
     }
 
     public void FaceTarget(Vector3 position) {
-        var target = position;
-        target.Y = GlobalPosition.Y;
-        LookAt(target);
+        LookAt(position);
     }
 
     public void Attack() {
